@@ -40,4 +40,34 @@
     <lastmod>2026-06-21</lastmod>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://threatlevelhuman.com/blog/ghostwriter-playbook.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://threatlevelhuman.com/blog/ghost-stadium.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://threatlevelhuman.com/blog/clickfix.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://threatlevelhuman.com/guides/index.html</loc>
+    <lastmod>2026-06-21</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://threatlevelhuman.com/guides/social-engineering-red-flags.pdf</loc>
+    <lastmod>2026-06-21</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://threatlevelhuman.com/guides/deepfake-red-flags.pdf</loc>
+    <lastmod>2026-06-21</lastmod>
+    <priority>0.5</priority>
+  </url>
 </urlset>
