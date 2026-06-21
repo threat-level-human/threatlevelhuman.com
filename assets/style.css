@@ -395,3 +395,44 @@ footer a:hover { color: var(--cyan); }
   color: var(--cyan);
 }
 .newsletter-cta .cta-link:hover { color: var(--amber); }
+
+/* ---------- signup alignment + terminal flourishes ---------- */
+/* center the single button under the centered text in .signup blocks (e.g. "Get new guides") */
+.signup .cta-row { justify-content: center; }
+
+/* braille spinner: a live "working" affordance for the terminal feel */
+.spin {
+  display: inline-block;
+  width: 1ch;
+  color: var(--cyan);
+  font-family: var(--mono);
+}
+.spin::before { content: "\280B"; animation: braille 0.9s steps(1) infinite; }
+@keyframes braille {
+  0%   { content: "\280B"; } 11% { content: "\2819"; } 22% { content: "\2839"; }
+  33%  { content: "\2838"; } 44% { content: "\283C"; } 55% { content: "\2834"; }
+  66%  { content: "\2826"; } 77% { content: "\2827"; } 88% { content: "\2807"; }
+  100% { content: "\280F"; }
+}
+
+/* hero system status line */
+.sysline { font-family: var(--mono); color: var(--gray); font-size: 0.85rem; margin-top: 24px; }
+.sysline .amber { color: var(--amber); }
+.sysline .dot { color: var(--gray); margin: 0 8px; }
+
+/* subtle CRT scanlines over the hero (modern-meets-terminal, very low contrast) */
+.hero { position: relative; overflow: hidden; }
+.hero .wrap { position: relative; z-index: 1; }
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(180deg,
+    rgba(79, 195, 247, 0.035) 0, rgba(79, 195, 247, 0.035) 1px,
+    transparent 1px, transparent 3px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .spin::before, .cursor { animation: none; }
+}
