@@ -298,9 +298,11 @@ section { padding: 56px 0; border-bottom: 1px solid var(--line); }
   padding: 12px 0;
   border-bottom: 1px solid var(--line);
   list-style: none;
+  display: flex;            /* the [ ] gets its own column so wrapped text lines up under itself */
+  align-items: baseline;
 }
 .upcoming ul { padding: 0; margin: 0; }
-.upcoming .q { color: var(--amber); margin-right: 12px; }
+.upcoming .q { color: var(--amber); margin-right: 12px; flex: 0 0 auto; }
 
 /* ---------- footer ---------- */
 footer {

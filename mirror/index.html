@@ -14,12 +14,44 @@
   <meta property="og:title" content="The Mirror: what your visit just revealed" />
   <meta property="og:description" content="You haven't typed a thing. Here is what your connection already told us. A private social-engineering teachable moment." />
   <meta property="og:url" content="https://threatlevelhuman.com/mirror/" />
+  <meta property="og:image" content="https://threatlevelhuman.com/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://threatlevelhuman.com/og-image.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://threatlevelhuman.com/#org",
+      "name": "threat level: human",
+      "url": "https://threatlevelhuman.com/",
+      "logo": "https://threatlevelhuman.com/icon-512.png",
+      "image": "https://threatlevelhuman.com/og-image.png",
+      "description": "Clear, calm cybersecurity briefings on phishing, social engineering, deepfakes, and the human attack vector.",
+      "sameAs": ["https://www.youtube.com/@threatlevelhuman", "https://threatlevelhuman.substack.com"]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://threatlevelhuman.com/mirror/",
+      "name": "The Mirror: what your visit just revealed",
+      "url": "https://threatlevelhuman.com/mirror/",
+      "description": "A live, private demonstration of what your connection reveals to an attacker before they ever contact you.",
+      "isPartOf": {"@id": "https://threatlevelhuman.com/#org"},
+      "inLanguage": "en"
+    }
+  ]
+}
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <style>
     .mirror { max-width: 860px; margin: 0 auto; padding: 16px; }
     .mirror .lead { color: var(--gray); max-width: 640px; }
@@ -68,6 +100,20 @@
       display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap;
     }
     .map-wrap .cap a { color: var(--cyan); }
+    .trace { margin: 22px 0; display: none; }
+    .trace.show { display: block; }
+    .trace-body { margin: 0; padding: 12px 16px 14px; }
+    .trace-line {
+      font-family: var(--mono); font-size: 0.86rem; line-height: 1.75; color: var(--white);
+      white-space: pre-wrap; word-break: break-word;
+    }
+    .trace-line .num { color: var(--gray); }
+    .trace-line .lbl { color: var(--cyan); }
+    .trace-line .note { color: var(--amber); }
+    .trace .cap {
+      padding: 9px 16px; font-family: var(--mono); font-size: 0.78rem; color: var(--gray);
+      border-top: 1px solid var(--line);
+    }
   </style>
 </head>
 <body>
@@ -111,6 +157,14 @@
         </div>
       </div>
 
+      <section class="scan trace" id="trace" aria-label="Reconstructed network path">
+        <div class="bar"><span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
+          <span>traceroute to threatlevelhuman.com</span></div>
+        <div class="trace-body" id="trace-body"></div>
+        <div class="cap">reconstructed from your IP metadata, not a live ICMP trace. A real attacker
+          fingerprints the same path: your device, your provider, your region, then the open internet.</div>
+      </section>
+
       <div class="verdict">
         <h2>WHY THIS MATTERS</h2>
         <p>None of this required a hack. The browser offers it, the network reveals it, a
@@ -128,8 +182,9 @@
 
       <p class="privacy">
         <b>Privacy:</b> nothing on this page is stored, logged, or sent to us. Everything is
-        computed in your own browser. The location line uses a public IP lookup that your
-        browser calls directly; we never see it. Reload and it is gone. Practicing what we preach.
+        computed in your own browser. The network, location, and reverse-DNS lines use public
+        lookups your browser calls directly; we never see them. Reload and it is gone. Practicing
+        what we preach.
       </p>
     </div>
   </main>
@@ -207,7 +262,9 @@
       add("coords", "Coordinates", "looking up...", true);
       add("tz", "Time zone", browserTz || "looking up...", true);
       add("isp", "Network / ISP", "looking up...", true);
-      add("asn", "ASN / org", "looking up...", true);
+      add("asn", "Network owner (ASN)", "looking up...", true);
+      add("rdns", "Reverse DNS (PTR)", "looking up...", true);
+      add("nettype", "Network type", "looking up...", true);
 
       function showMap(lat, lon) {
         if (lat == null || lon == null || isNaN(lat) || isNaN(lon)) return;
@@ -254,6 +311,72 @@
         if (cell && cell.textContent === "looking up...") set(kind, ip);
       }
 
+      // Honest residential/mobile/hosting inference from the network owner's name -- the same tell
+      // an analyst uses to spot "is this person on a VPN/cloud or their real home line?"
+      var HOSTING_RE = /(amazon|aws|google|microsoft|azure|oracle|alibaba|tencent|digitalocean|linode|akamai|fastly|cloudflare|ovh|hetzner|leaseweb|vultr|choopa|m247|datacamp|contabo|scaleway|hostwinds|colocrossing|nforce|ip ?volume|packethub|quadranet|psychz|zenlayer|cogent|datacenter|data ?center|hosting|host europe|server|vpn|proxy|gigabit)/i;
+      var MOBILE_RE = /(wireless|mobile|cellular|t-mobile|mobility|verizon wireless|vodafone|telefonica|orange|jio|airtel|sprint|cricket|telstra|lte)/i;
+      function classifyNetwork(org) {
+        if (!org) return "unknown";
+        if (HOSTING_RE.test(org)) return "datacenter / hosting -- likely a VPN, proxy, or cloud exit (you may be masking your real network)";
+        if (MOBILE_RE.test(org)) return "mobile carrier";
+        return "residential or business ISP";
+      }
+
+      // Reverse DNS (PTR) via Google's DNS-over-HTTPS -- the hostname behind an IP often leaks the
+      // ISP, the region, sometimes a customer name. v4 only (v6 PTR is rarely set).
+      var rdnsDone = false, trace2 = null;
+      function ensureRdns(ip) {
+        if (rdnsDone || !ip || !/^\d{1,3}(\.\d{1,3}){3}$/.test(ip)) return;
+        rdnsDone = true;
+        var name = ip.split(".").reverse().join(".") + ".in-addr.arpa";
+        fetch("https://dns.google/resolve?name=" + encodeURIComponent(name) + "&type=PTR")
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            var ans = d && d.Answer;
+            var host = (ans && ans.length) ? String(ans[ans.length - 1].data || "").replace(/\.$/, "") : "";
+            set("rdns", host || "no PTR record");
+            if (host && trace2) trace2.appendChild(document.createTextNode("  ->  " + host));
+          })
+          .catch(function () { set("rdns", "lookup failed"); });
+      }
+
+      // A reconstructed, clearly-labelled traceroute-style path (real ICMP traces can't run in a
+      // browser). Dynamic values use textContent so external data can never inject markup.
+      var traceBuilt = false;
+      function traceLine(num, label, value, kind) {
+        var el = document.createElement("div");
+        el.className = "trace-line";
+        var n = document.createElement("span");
+        n.className = "num";
+        n.textContent = (num < 10 ? " " : "") + num + "  ";
+        var l = document.createElement("span");
+        l.className = (kind === "note") ? "note" : "lbl";
+        l.textContent = label;
+        el.appendChild(n);
+        el.appendChild(l);
+        if (value) el.appendChild(document.createTextNode("  " + value));
+        return el;
+      }
+      function buildTrace(o) {
+        if (traceBuilt) return;
+        traceBuilt = true;
+        var body = document.getElementById("trace-body");
+        body.textContent = "";
+        var net = o.isp || "your provider";
+        if (o.asn) net += " (AS" + String(o.asn).replace(/^AS/i, "") + ")";
+        var loc = [o.city, o.region, o.country].filter(Boolean).join(", ") || "unknown";
+        var h2 = traceLine(2, "your network", net);
+        trace2 = h2;
+        [
+          traceLine(1, "your device", browser + " on " + os),
+          h2,
+          traceLine(3, "your region", loc),
+          traceLine(4, "* * *", "the open internet", "note"),
+          traceLine(5, "threatlevelhuman.com", "[reached]")
+        ].forEach(function (el) { body.appendChild(el); });
+        document.getElementById("trace").classList.add("show");
+      }
+
       function fill(o) {
         // the geo provider returns one address (v4 or v6); use it to fill whichever family is
         // still pending, but the dedicated ipify endpoints below are the primary source for both.
@@ -265,14 +388,17 @@
         set("coords", (o.lat != null && o.lon != null) ? (Number(o.lat).toFixed(4) + ", " + Number(o.lon).toFixed(4)) : "hidden");
         if (o.tz) set("tz", o.tz);
         set("isp", o.isp || "hidden");
-        set("asn", o.asn ? ("AS" + String(o.asn).replace(/^AS/i, "")) : "hidden");
+        set("asn", o.asn ? ("AS" + String(o.asn).replace(/^AS/i, "") + (o.isp ? " · " + o.isp : "")) : "hidden");
+        set("nettype", classifyNetwork(o.isp));
         showMap(Number(o.lat), Number(o.lon));
+        buildTrace(o);
+        if (o.ip && !looksV6(o.ip)) ensureRdns(o.ip);
         document.getElementById("scan-title").textContent = "scan complete.";
       }
 
       function tryProvider(idx) {
         if (idx >= providers.length) {
-          ["city", "region", "postal", "country", "coords", "isp", "asn"].forEach(function (k) {
+          ["city", "region", "postal", "country", "coords", "isp", "asn", "nettype"].forEach(function (k) {
             set(k, "lookup blocked");
           });
           set("city", "lookup blocked (good instinct, or a blocker stopped it)");
@@ -294,7 +420,7 @@
       // so each only succeeds if your connection actually carries that family).
       fetch("https://api.ipify.org?format=json")
         .then(function (r) { return r.json(); })
-        .then(function (d) { if (d && d.ip) set("ipv4", d.ip); })
+        .then(function (d) { if (d && d.ip) { set("ipv4", d.ip); ensureRdns(d.ip); } })
         .catch(function () { if (cells.ipv4 && cells.ipv4.textContent === "looking up...") set("ipv4", "not detected"); });
       fetch("https://api6.ipify.org?format=json")
         .then(function (r) { return r.json(); })
