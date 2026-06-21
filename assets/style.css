@@ -441,17 +441,15 @@ footer a:hover { color: var(--cyan); }
 .watch-cta { margin: 4px 0 20px; }
 
 /* ---------- shimmering links (the web echo of the TUI ShimmerText) ---------- */
-/* a brand gradient (cyan -> teal -> periwinkle -> violet) swept across the glyphs, matching the
-   spinner/shimmer palette in the terminal UI. Applied to the chrome + CTA links, not inline prose
-   links (those stay solid cyan for readability). */
+/* the brand gradient (cyan -> light cyan -> amber) swept across the chrome + CTA links. The brandmark
+   is intentionally NOT shimmered (it keeps its static brand colors). Inline prose links stay solid. */
 @keyframes link-shimmer { to { background-position: 200% center; } }
-.brandmark,
 .nav a,
 .foot-grid a,
 .more,
 .back-link,
 .cta-link {
-  background-image: linear-gradient(90deg, #4FC3F7, #5BE0C9, #7AA2FF, #B388FF, #4FC3F7);
+  background-image: linear-gradient(90deg, #4FC3F7, #8FE3FF, #FFB74D, #4FC3F7);
   background-size: 200% auto;
   background-clip: text;
   -webkit-background-clip: text;
@@ -459,12 +457,28 @@ footer a:hover { color: var(--cyan); }
   color: transparent;
   animation: link-shimmer 7s linear infinite;
 }
+/* the YouTube link gets YouTube red with a white shimmer */
+.nav a[href*="youtube"],
+.foot-grid a[href*="youtube"] {
+  background-image: linear-gradient(90deg, #FF0000, #FFFFFF, #FF0000);
+}
+/* the Mirror link gets a chrome/silver "mirror" shimmer (faster, brighter) so it stands out
+   from the brand-colored links, top and bottom of every page */
+.nav a.mirror-link,
+.foot-grid a.mirror-link {
+  background-image: linear-gradient(90deg, #8fa3b0 0%, #ffffff 22%, #d6ecfb 42%, #ffffff 62%, #8fa3b0 100%);
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  animation-duration: 3.2s;
+}
+.nav a.mirror-link:hover,
+.foot-grid a.mirror-link:hover { animation-duration: 1.4s; }
 .nav a:hover,
 .foot-grid a:hover,
 .more:hover,
 .back-link:hover { animation-duration: 2.2s; }   /* livelier sweep on hover */
 @media (prefers-reduced-motion: reduce) {
-  .brandmark, .nav a, .foot-grid a, .more, .back-link, .cta-link {
+  .nav a, .foot-grid a, .more, .back-link, .cta-link {
     animation: none; -webkit-text-fill-color: initial; color: var(--cyan);
   }
 }

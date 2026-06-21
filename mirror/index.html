@@ -56,6 +56,18 @@
     .privacy { font-family: var(--mono); font-size: 0.8rem; color: var(--gray); margin-top: 10px; }
     .privacy b { color: var(--cyan); }
     @media (prefers-reduced-motion: reduce) { .row { animation: none; opacity: 1; transform: none; } }
+    .map-wrap {
+      margin: 22px 0; border: 1px solid var(--cyan); border-radius: 10px; overflow: hidden;
+      display: none; box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+    }
+    .map-wrap.show { display: block; }
+    .map-wrap iframe { width: 100%; height: 340px; border: 0; display: block; filter: grayscale(0.15) contrast(1.05); }
+    .map-wrap .cap {
+      padding: 9px 14px; font-family: var(--mono); font-size: 0.78rem; color: var(--gray);
+      background: var(--navy-2); border-top: 1px solid var(--line);
+      display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+    }
+    .map-wrap .cap a { color: var(--cyan); }
   </style>
 </head>
 <body>
@@ -66,7 +78,8 @@
         <a href="/#episodes">episodes</a>
         <a href="/blog/index.html">blog</a>
         <a href="/guides/index.html">guides</a>
-        <a href="https://threatlevelhuman.substack.com">newsletter</a>
+        <a href="https://threatlevelhuman.substack.com" target="_blank" rel="noopener">newsletter</a>
+        <a class="mirror-link" href="/mirror/">mirror</a>
         <a href="https://www.youtube.com/@threatlevelhuman">youtube</a>
       </nav>
     </div>
@@ -89,6 +102,14 @@
           <span id="scan-title">scanning your connection...</span></div>
         <div id="rows"></div>
       </section>
+
+      <div class="map-wrap" id="map-wrap" aria-label="Approximate location of your connection">
+        <iframe id="map-frame" title="Approximate location of your connection" loading="lazy" referrerpolicy="no-referrer"></iframe>
+        <div class="cap">
+          <span>approximate location from your IP &mdash; not your exact address, but close enough to be useful to an attacker.</span>
+          <a id="map-link" href="#" target="_blank" rel="noopener">open in Google Maps -&gt;</a>
+        </div>
+      </div>
 
       <div class="verdict">
         <h2>WHY THIS MATTERS</h2>
@@ -119,6 +140,7 @@
       <div>
         <a href="/blog/index.html">blog</a> &middot;
         <a href="/guides/index.html">guides</a> &middot;
+        <a class="mirror-link" href="/mirror/">mirror</a> &middot;
         <a href="https://www.youtube.com/@threatlevelhuman">youtube</a>
       </div>
     </div>
@@ -128,64 +150,134 @@
     (function () {
       var rows = document.getElementById("rows");
       var i = 0;
-      function add(label, value, hot) {
+      var cells = {};   // key -> the .v element, so the network lookup can fill them in later
+
+      function add(key, label, value, hot) {
         var el = document.createElement("div");
         el.className = "row";
-        el.style.animationDelay = (i * 0.12) + "s";
+        el.style.animationDelay = (i * 0.1) + "s";
         i++;
         var v = (value === undefined || value === null || value === "") ? "not exposed" : value;
         el.innerHTML = '<div class="k">' + label + '</div><div class="v' + (hot ? " hot" : "") + '"></div>';
-        el.querySelector(".v").textContent = v;
+        var cell = el.querySelector(".v");
+        cell.textContent = v;
         rows.appendChild(el);
+        if (key) cells[key] = cell;
       }
+      function set(key, value, hot) {
+        var cell = cells[key];
+        if (!cell) return;
+        cell.textContent = (value === undefined || value === null || value === "") ? "not exposed" : value;
+        if (hot) cell.classList.add("hot");
+      }
+
       var n = navigator, s = screen;
       var ua = n.userAgent || "";
-      function pick(re, d) { var m = ua.match(re); return m ? m[1] : d; }
       var browser = /Edg\//.test(ua) ? "Edge" : /OPR\//.test(ua) ? "Opera"
         : /Firefox\//.test(ua) ? "Firefox" : /Chrome\//.test(ua) ? "Chrome"
         : /Safari\//.test(ua) ? "Safari" : "your browser";
       var os = /Windows NT 10/.test(ua) ? "Windows 10 or 11" : /Windows/.test(ua) ? "Windows"
         : /Mac OS X/.test(ua) ? "macOS" : /Android/.test(ua) ? "Android"
         : /iPhone|iPad/.test(ua) ? "iOS" : /Linux/.test(ua) ? "Linux" : "your OS";
-      var tz = "";
-      try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (e) {}
+      var browserTz = "";
+      try { browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (e) {}
       var conn = n.connection && n.connection.effectiveType ? n.connection.effectiveType : "";
 
-      add("Local time", new Date().toLocaleString());
-      add("Time zone", tz, true);
-      add("Browser", browser);
-      add("Operating system", os);
-      add("Device type", /Mobi|Android|iPhone/.test(ua) ? "phone or tablet" : "desktop or laptop");
-      add("Screen", s ? (s.width + " x " + s.height + ", " + (s.colorDepth || "?") + "-bit color") : "");
-      add("Window size", window.innerWidth + " x " + window.innerHeight);
-      add("Languages", (n.languages || [n.language]).join(", "), true);
-      add("Connection", conn);
-      add("Came from", document.referrer || "typed or bookmarked (you came in clean)");
-      add("Cookies enabled", n.cookieEnabled ? "yes" : "no");
-      add("IP address", "looking up...", true);
-      add("Location", "looking up...", true);
-      add("Network / ISP", "looking up...", true);
+      // --- what the browser hands over, no network call needed ---
+      add(null, "Local time", new Date().toLocaleString());
+      add(null, "Browser", browser);
+      add(null, "Operating system", os);
+      add(null, "Device type", /Mobi|Android|iPhone/.test(ua) ? "phone or tablet" : "desktop or laptop");
+      add(null, "Screen", s ? (s.width + " x " + s.height + ", " + (s.colorDepth || "?") + "-bit color") : "");
+      add(null, "Window size", window.innerWidth + " x " + window.innerHeight);
+      add(null, "Languages", (n.languages || [n.language]).join(", "), true);
+      add(null, "Connection", conn);
+      add(null, "Came from", document.referrer || "typed or bookmarked (you came in clean)");
+      add(null, "Cookies enabled", n.cookieEnabled ? "yes" : "no");
 
-      var ipRow, locRow, ispRow;
-      var vs = rows.querySelectorAll(".row .v");
-      ipRow = vs[vs.length - 3]; locRow = vs[vs.length - 2]; ispRow = vs[vs.length - 1];
+      // --- what a public IP lookup fills in (placeholders updated by the fetch chain) ---
+      add("ip", "IP address", "looking up...", true);
+      add("city", "City", "looking up...", true);
+      add("region", "Region / state", "looking up...", true);
+      add("postal", "Postal code", "looking up...", true);
+      add("country", "Country", "looking up...", true);
+      add("coords", "Coordinates", "looking up...", true);
+      add("tz", "Time zone", browserTz || "looking up...", true);
+      add("isp", "Network / ISP", "looking up...", true);
+      add("asn", "ASN / org", "looking up...", true);
 
-      fetch("https://ipwho.is/")
-        .then(function (r) { return r.json(); })
-        .then(function (d) {
-          if (!d || d.success === false) throw new Error("blocked");
-          ipRow.textContent = d.ip || "hidden";
-          var loc = [d.city, d.region, d.country].filter(Boolean).join(", ");
-          locRow.textContent = loc || "hidden";
-          ispRow.textContent = (d.connection && (d.connection.isp || d.connection.org)) || "hidden";
-          document.getElementById("scan-title").textContent = "scan complete.";
-        })
-        .catch(function () {
-          ipRow.textContent = "lookup blocked";
-          locRow.textContent = "lookup blocked (good instinct, or a blocker stopped it)";
-          ispRow.textContent = "lookup blocked";
+      function showMap(lat, lon) {
+        if (lat == null || lon == null || isNaN(lat) || isNaN(lon)) return;
+        var dx = 0.05, dy = 0.03;
+        var bbox = (lon - dx) + "," + (lat - dy) + "," + (lon + dx) + "," + (lat + dy);
+        var frame = document.getElementById("map-frame");
+        frame.src = "https://www.openstreetmap.org/export/embed.html?bbox="
+          + encodeURIComponent(bbox) + "&layer=mapnik&marker="
+          + encodeURIComponent(lat + "," + lon);
+        document.getElementById("map-link").href = "https://www.google.com/maps?q=" + lat + "," + lon;
+        document.getElementById("map-wrap").classList.add("show");
+      }
+
+      // Normalize the differing shapes from each free, no-key, CORS-friendly provider.
+      function normalize(d) {
+        if (!d || d.success === false || d.error) return null;
+        var lat = d.latitude != null ? d.latitude : d.lat;
+        var lon = d.longitude != null ? d.longitude : d.lon;
+        var tz = d.timezone;
+        if (tz && typeof tz === "object") tz = tz.id || tz.name || "";
+        return {
+          ip: d.ip || d.query,
+          city: d.city,
+          region: d.region || d.region_name || d.state,
+          postal: d.postal || d.postal_code || d.zip,
+          country: d.country || d.country_name,
+          lat: lat, lon: lon,
+          tz: tz,
+          isp: (d.connection && (d.connection.isp || d.connection.org))
+            || d.isp || d.org || d.organization_name,
+          asn: d.asn || (d.connection && d.connection.asn) || d.as
+        };
+      }
+
+      var providers = [
+        "https://ipwho.is/",
+        "https://ipapi.co/json/",
+        "https://get.geojs.io/v1/ip/geo.json"
+      ];
+
+      function fill(o) {
+        set("ip", o.ip || "hidden");
+        set("city", o.city || "hidden");
+        set("region", o.region || "hidden");
+        set("postal", o.postal || "hidden");
+        set("country", o.country || "hidden");
+        set("coords", (o.lat != null && o.lon != null) ? (Number(o.lat).toFixed(4) + ", " + Number(o.lon).toFixed(4)) : "hidden");
+        if (o.tz) set("tz", o.tz);
+        set("isp", o.isp || "hidden");
+        set("asn", o.asn ? ("AS" + String(o.asn).replace(/^AS/i, "")) : "hidden");
+        showMap(Number(o.lat), Number(o.lon));
+        document.getElementById("scan-title").textContent = "scan complete.";
+      }
+
+      function tryProvider(idx) {
+        if (idx >= providers.length) {
+          ["ip", "city", "region", "postal", "country", "coords", "isp", "asn"].forEach(function (k) {
+            set(k, "lookup blocked");
+          });
+          set("city", "lookup blocked (good instinct, or a blocker stopped it)");
           document.getElementById("scan-title").textContent = "scan complete (lookup blocked).";
-        });
+          return;
+        }
+        fetch(providers[idx], { headers: { "Accept": "application/json" } })
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            var o = normalize(d);
+            if (!o || (!o.ip && o.lat == null)) throw new Error("empty");
+            fill(o);
+          })
+          .catch(function () { tryProvider(idx + 1); });
+      }
+      tryProvider(0);
     })();
   </script>
 </body>
