@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What Is Social Engineering? Attacks, Examples, and Red Flags | threat level: human</title>
+  <meta name="description" content="Social engineering is the art of hacking people, not computers. Learn how these attacks work, the most common types, the red flags to watch for, and how to defend yourself." />
+  <link rel="canonical" href="https://threatlevelhuman.com/social-engineering/" />
+  <meta name="theme-color" content="#0A0E1A" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="threat level: human" />
+  <meta property="og:title" content="What Is Social Engineering? Attacks, Examples, and Red Flags | threat level: human" />
+  <meta property="og:description" content="Social engineering is the art of hacking people, not computers. Learn how these attacks work, the most common types, the red flags to watch for, and how to defend yourself." />
+  <meta property="og:url" content="https://threatlevelhuman.com/social-engineering/" />
+  <meta property="og:image" content="https://threatlevelhuman.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="What Is Social Engineering? Attacks, Examples, and Red Flags | threat level: human" />
+  <meta name="twitter:description" content="Social engineering is the art of hacking people, not computers. Learn how these attacks work, the most common types, the red flags to watch for, and how to defend yourself." />
+  <meta name="twitter:image" content="https://threatlevelhuman.com/og-image.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://threatlevelhuman.com/#org",
+      "name": "threat level: human",
+      "url": "https://threatlevelhuman.com/",
+      "logo": "https://threatlevelhuman.com/icon-512.png",
+      "image": "https://threatlevelhuman.com/og-image.png",
+      "description": "Clear, calm cybersecurity briefings on phishing, social engineering, deepfakes, and the human attack vector. Learn how these attacks actually work and how to spot and stop them.",
+      "sameAs": [
+        "https://www.youtube.com/@threatlevelhuman",
+        "https://threatlevelhuman.substack.com"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://threatlevelhuman.com/#website",
+      "name": "threat level: human",
+      "url": "https://threatlevelhuman.com/",
+      "description": "Clear, calm cybersecurity briefings on phishing, social engineering, deepfakes, and the human attack vector. Learn how these attacks actually work and how to spot and stop them.",
+      "publisher": {
+        "@id": "https://threatlevelhuman.com/#org"
+      },
+      "inLanguage": "en"
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brandmark" href="/">threat level: <b>human</b></a>
+      <nav class="nav">
+        <a href="/#episodes">episodes</a>
+        <a href="/blog/index.html">blog</a>
+        <a href="/guides/index.html">guides</a>
+        <a href="/#upcoming">upcoming</a>
+        <a href="https://threatlevelhuman.substack.com" target="_blank" rel="noopener">newsletter</a>
+        <a class="mirror-link" href="/mirror/">mirror</a>
+        <a href="https://www.youtube.com/@threatlevelhuman" target="_blank" rel="noopener">youtube</a>
+      </nav>
+    </div>
+  </header>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://threatlevelhuman.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Social engineering",
+      "item": "https://threatlevelhuman.com/social-engineering/"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is social engineering?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Social engineering is the manipulation of people into giving up information, access, or money. Instead of attacking technology, the attacker exploits human trust and judgment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the most common types of social engineering?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Phishing, spear phishing, vishing (voice), smishing (text), pretexting, baiting, business email compromise, and MFA-bypass attacks are the most common."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between phishing and social engineering?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Phishing is one type of social engineering, specifically fraudulent messages. Social engineering is the broader category that also covers phone calls, in-person tricks, and more."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I recognize a social engineering attack?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Watch for unexpected contact, pressure to act fast, requests for passwords or one-time codes, and details that feel oddly personal. When a message feels personal and urgent, slow down and verify it through a channel you already trust."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can technology stop social engineering?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tools like spam filters and MFA help, but they cannot fully stop it, because the target is human judgment. The durable defense is a habit of verifying before you act."
+      }
+    }
+  ]
+}
+  </script>
+  <main class="article pillar">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="/">~</a> / social engineering</p>
+      <p class="kicker prompt">man social-engineering<span class="cursor"></span></p>
+      <h1>What Is Social Engineering?</h1>
+      <p class="lede">Social engineering is the art of hacking people instead of computers. Rather than break through a firewall, the attacker manipulates a person into handing over information, access, or money. It is the oldest technique in security and still the most effective, because it targets human judgment, not software.</p>
+      <p class="callout">Around 60% of data breaches involve a human element, a click, a reply, or a phone call, according to Verizon's 2025 Data Breach Investigations Report.</p>
+      <section class="pillar-sec">
+        <h2>Why social engineering works</h2>
+        <p>Good social engineering does not feel like an attack. It feels like a normal request from a believable person. Attackers lean on a handful of predictable human triggers:</p>
+        <ul>
+          <li><b>Authority:</b> a message that appears to come from a boss, the IT team, a bank, or the government.</li>
+          <li><b>Urgency and fear:</b> a deadline, a threat, or a problem that must be fixed right now, before you have time to think.</li>
+          <li><b>Trust and familiarity:</b> details that make the message feel personal, your name, your employer, your city, your recent purchase.</li>
+          <li><b>Reciprocity:</b> a small favor or gift that makes you feel obligated to help back.</li>
+          <li><b>Social proof:</b> the sense that everyone else has already complied, so you should too.</li>
+        </ul>
+        <p>The familiarity is the whole game. The more a message seems to already know about you, the more you should slow down, not speed up.</p>
+      </section>
+      <section class="pillar-sec">
+        <h2>Common types of social engineering</h2>
+        <ul>
+          <li><b><a href="/phishing/">Phishing</a>:</b> mass fraudulent emails that impersonate a trusted brand to steal credentials or deliver malware.</li>
+          <li><b>Spear phishing:</b> a targeted version aimed at a specific person, using real details to raise believability.</li>
+          <li><b>Vishing:</b> voice phishing over a phone call, often impersonating IT support or a bank.</li>
+          <li><b>Smishing:</b> phishing by text message, frequently fake delivery or bank alerts.</li>
+          <li><b>Pretexting:</b> inventing a believable scenario (a new vendor, an audit, a locked account) to justify the request.</li>
+          <li><b>Baiting:</b> dangling something tempting, a free download or a found USB drive, to trigger the click.</li>
+          <li><b>Business email compromise (BEC):</b> hijacking or spoofing a real business account to redirect a payment.</li>
+          <li><b>MFA fatigue and adversary-in-the-middle:</b> modern attacks that defeat multi-factor authentication by spamming approval prompts or relaying the login in real time.</li>
+        </ul>
+      </section>
+      <section class="pillar-sec">
+        <h2>The anatomy of a social engineering attack</h2>
+        <ol>
+          <li><b>Reconnaissance:</b> the attacker gathers public details about you. You can see how much your own connection gives away on our <a href="/mirror/">Mirror</a> page.</li>
+          <li><b>Pretext:</b> they build a believable story that fits those details.</li>
+          <li><b>Hook:</b> they make contact with a message engineered to feel personal and safe.</li>
+          <li><b>Exploit:</b> you click, reply, approve, or pay, and they get what they came for.</li>
+          <li><b>Exit:</b> they cover their tracks and move on, or pivot deeper into the organization.</li>
+        </ol>
+      </section>
+      <section class="pillar-sec">
+        <h2>Social engineering red flags</h2>
+        <ul>
+          <li>Contact you did not expect, especially if it pressures you to act fast.</li>
+          <li>A request for passwords, one-time codes, or payment, no legitimate organization asks for these by message.</li>
+          <li>A link or attachment you were not anticipating.</li>
+          <li>A sender address or phone number that is close to, but not exactly, the real one.</li>
+          <li>Emotional pressure: fear, excitement, guilt, or a too-good-to-be-true offer.</li>
+          <li>A push to bypass normal process, just this once.</li>
+        </ul>
+      </section>
+      <section class="pillar-sec">
+        <h2>How to protect yourself</h2>
+        <ul>
+          <li><b>Slow down.</b> Urgency is the attacker's favorite tool. Give yourself permission to pause.</li>
+          <li><b>Verify out of band.</b> Confirm a request using a number or address you already trust, not the one in the message.</li>
+          <li><b>Never share one-time codes.</b> A real support agent will never ask for your MFA code.</li>
+          <li><b>Limit what you publish.</b> The less an attacker can learn about you, the weaker their pretext.</li>
+          <li><b>Report it.</b> Flagging a suspicious message protects everyone around you.</li>
+        </ul>
+      </section>
+      <section class="pillar-sec">
+        <h2>See social engineering in the wild</h2>
+        <p>Every threat level: human briefing takes a real attack apart and shows the human factor at its center:</p>
+        <ul>
+          <li><a href="/episodes/clickfix.html">ClickFix</a>: victims are tricked into pasting an attacker&#x27;s command themselves</li>
+          <li><a href="/episodes/ghostwriter-playbook.html">The Ghostwriter Playbook</a>: credential theft paired with fabricated content</li>
+          <li><a href="/episodes/mfa-under-siege.html">MFA Under Siege</a>: vishing and adversary-in-the-middle defeat multi-factor authentication</li>
+          <li><a href="/episodes/ghost-stadium.html">Ghost Stadium</a>: a trusted brand&#x27;s own infrastructure turned against its fans</li>
+        </ul>
+      </section>
+      <aside class="newsletter-cta">
+        <h2>// Free field guides</h2>
+        <p>Keep the red flags above in one place. Download the one-page infographic reference, free to
+          save, print, and share.</p>
+        <a class="cta-button" href="/guides/social-engineering-red-flags.pdf">Download: Social Engineering Red Flags (PDF) -&gt;</a>
+        <a class="cta-link" href="/guides/deepfake-red-flags.pdf">Also grab: Deepfake Red Flags (PDF)</a>
+      </aside>
+      <section class="faq">
+        <h2>Frequently asked questions</h2>
+        <details><summary>What is social engineering?</summary><p>Social engineering is the manipulation of people into giving up information, access, or money. Instead of attacking technology, the attacker exploits human trust and judgment.</p></details>
+        <details><summary>What are the most common types of social engineering?</summary><p>Phishing, spear phishing, vishing (voice), smishing (text), pretexting, baiting, business email compromise, and MFA-bypass attacks are the most common.</p></details>
+        <details><summary>What is the difference between phishing and social engineering?</summary><p>Phishing is one type of social engineering, specifically fraudulent messages. Social engineering is the broader category that also covers phone calls, in-person tricks, and more.</p></details>
+        <details><summary>How can I recognize a social engineering attack?</summary><p>Watch for unexpected contact, pressure to act fast, requests for passwords or one-time codes, and details that feel oddly personal. When a message feels personal and urgent, slow down and verify it through a channel you already trust.</p></details>
+        <details><summary>Can technology stop social engineering?</summary><p>Tools like spam filters and MFA help, but they cannot fully stop it, because the target is human judgment. The durable defense is a habit of verifying before you act.</p></details>
+      </section>
+      <div class="cta-row" style="margin-top:34px;">
+        <a class="btn solid" href="https://threatlevelhuman.substack.com/subscribe" target="_blank" rel="noopener">get the weekly briefing</a>
+        <a class="btn" href="/#episodes">watch the briefings</a>
+        <a class="btn ghost" href="/mirror/">see what your visit reveals -&gt;</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap foot-grid">
+      <div>&copy; 2026 threat level: human &middot; the attack vector you can&#x27;t patch.</div>
+      <div>
+        <a href="/#episodes">episodes</a> &middot;
+        <a href="/blog/index.html">blog</a> &middot;
+        <a href="/guides/index.html">guides</a> &middot;
+        <a href="/#upcoming">upcoming</a> &middot;
+        <a href="https://threatlevelhuman.substack.com" target="_blank" rel="noopener">newsletter</a> &middot;
+        <a class="mirror-link" href="/mirror/">mirror</a> &middot;
+        <a href="https://www.youtube.com/@threatlevelhuman">youtube</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
