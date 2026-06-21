@@ -441,15 +441,13 @@ footer a:hover { color: var(--cyan); }
 .watch-cta { margin: 4px 0 20px; }
 
 /* ---------- shimmering links (the web echo of the TUI ShimmerText) ---------- */
-/* the brand gradient (cyan -> light cyan -> amber) swept across the chrome + CTA links. The brandmark
-   is intentionally NOT shimmered (it keeps its static brand colors). Inline prose links stay solid. */
+/* a thin white glint swept through the cyan top (nav) + bottom (footer) links only. The brandmark is
+   intentionally NOT shimmered (it keeps its static brand colors). Body/CTA links ("read briefing",
+   back links, etc.) stay solid. */
 @keyframes link-shimmer { to { background-position: 200% center; } }
 .nav a,
-.foot-grid a,
-.more,
-.back-link,
-.cta-link {
-  background-image: linear-gradient(90deg, #4FC3F7, #8FE3FF, #FFB74D, #4FC3F7);
+.foot-grid a {
+  background-image: linear-gradient(90deg, #4FC3F7 0%, #4FC3F7 43%, #FFFFFF 50%, #4FC3F7 57%, #4FC3F7 100%);
   background-size: 200% auto;
   background-clip: text;
   -webkit-background-clip: text;
@@ -485,11 +483,9 @@ footer a:hover { color: var(--cyan); }
 .nav a.mirror-link:hover,
 .foot-grid a.mirror-link:hover { animation-duration: 1.4s; }
 .nav a:hover,
-.foot-grid a:hover,
-.more:hover,
-.back-link:hover { animation-duration: 2.2s; }   /* livelier sweep on hover */
+.foot-grid a:hover { animation-duration: 2.2s; }   /* livelier sweep on hover */
 @media (prefers-reduced-motion: reduce) {
-  .nav a, .foot-grid a, .more, .back-link, .cta-link {
+  .nav a, .foot-grid a {
     animation: none; -webkit-text-fill-color: initial; color: var(--cyan);
   }
 }
