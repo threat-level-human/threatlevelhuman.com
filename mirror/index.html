@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Mirror: what your visit just revealed | threat level: human</title>
+  <meta name="description" content="You haven't typed a thing, but your connection already revealed your location, network, and device. A live, private demonstration of what an attacker sees before they ever contact you." />
+  <link rel="canonical" href="https://threatlevelhuman.com/mirror/" />
+  <meta name="theme-color" content="#0A0E1A" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="threat level: human" />
+  <meta property="og:title" content="The Mirror: what your visit just revealed" />
+  <meta property="og:description" content="You haven't typed a thing. Here is what your connection already told us. A private social-engineering teachable moment." />
+  <meta property="og:url" content="https://threatlevelhuman.com/mirror/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .mirror { max-width: 860px; margin: 0 auto; padding: 16px; }
+    .mirror .lead { color: var(--gray); max-width: 640px; }
+    .scan {
+      margin: 28px 0;
+      background: var(--navy-2);
+      border: 1px solid var(--cyan);
+      border-radius: 10px;
+      padding: 8px 0;
+      font-family: var(--mono);
+      box-shadow: 0 0 0 1px rgba(79,195,247,0.08), 0 18px 60px rgba(0,0,0,0.45);
+    }
+    .scan .bar {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-bottom: 1px solid var(--line); color: var(--gray); font-size: 0.85rem;
+    }
+    .scan .bar .dot { width: 10px; height: 10px; border-radius: 50%; background: #ff5f56; }
+    .scan .bar .dot.y { background: #ffbd2e; } .scan .bar .dot.g { background: #27c93f; }
+    .row {
+      display: grid; grid-template-columns: 210px 1fr; gap: 12px;
+      padding: 9px 16px; border-bottom: 1px dashed rgba(30,42,68,0.7); align-items: baseline;
+      opacity: 0; transform: translateY(4px); animation: reveal 0.45s forwards;
+    }
+    .row:last-child { border-bottom: 0; }
+    .row .k { color: var(--gray); font-size: 0.82rem; }
+    .row .v { color: var(--white); word-break: break-word; }
+    .row .v.hot { color: var(--amber); }
+    @keyframes reveal { to { opacity: 1; transform: none; } }
+    .verdict {
+      margin: 26px 0; padding: 20px 22px; border-radius: 10px;
+      background: var(--navy-2); border-left: 3px solid var(--amber);
+    }
+    .verdict h2 { color: var(--amber); margin: 0 0 8px; font-family: var(--mono); letter-spacing: 1px; font-size: 1rem; }
+    .privacy { font-family: var(--mono); font-size: 0.8rem; color: var(--gray); margin-top: 10px; }
+    .privacy b { color: var(--cyan); }
+    @media (prefers-reduced-motion: reduce) { .row { animation: none; opacity: 1; transform: none; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brandmark" href="/">threat level: <b>human</b></a>
+      <nav class="nav">
+        <a href="/#episodes">episodes</a>
+        <a href="/blog/index.html">blog</a>
+        <a href="/guides/index.html">guides</a>
+        <a href="https://threatlevelhuman.substack.com">newsletter</a>
+        <a href="https://www.youtube.com/@threatlevelhuman">youtube</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="hero">
+    <div class="wrap mirror">
+      <p class="kicker prompt">whoami<span class="cursor"></span></p>
+      <h1>The <span class="lvl">Mirror</span></h1>
+      <p class="tagline">// you haven't typed a thing.</p>
+      <p class="lead">
+        You arrived a few seconds ago and told us nothing about yourself. Yet your
+        connection already handed over the details below. This is the raw material of a
+        social-engineering attack: an attacker collects exactly this before they ever
+        contact you, then uses it to build a message that feels personal and safe.
+      </p>
+
+      <section class="scan" aria-label="What your visit revealed">
+        <div class="bar"><span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
+          <span id="scan-title">scanning your connection...</span></div>
+        <div id="rows"></div>
+      </section>
+
+      <div class="verdict">
+        <h2>WHY THIS MATTERS</h2>
+        <p>None of this required a hack. The browser offers it, the network reveals it, a
+          public lookup fills in the rest. An attacker pairs your city, your employer's
+          network, and your device into a pretext: a "delivery problem" in your town, an
+          "IT notice" for your exact browser, a "colleague" who knows where you are. The
+          familiarity is the whole game. The defense is to treat unsolicited messages that
+          feel personal as more suspicious, not less.</p>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn solid" href="https://threatlevelhuman.substack.com/subscribe">get the weekly briefing</a>
+        <a class="btn" href="/#episodes">watch how these attacks work</a>
+      </div>
+
+      <p class="privacy">
+        <b>Privacy:</b> nothing on this page is stored, logged, or sent to us. Everything is
+        computed in your own browser. The location line uses a public IP lookup that your
+        browser calls directly; we never see it. Reload and it is gone. Practicing what we preach.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap foot-grid">
+      <div>&copy; 2026 threat level: human &middot; the attack vector you can't patch.</div>
+      <div>
+        <a href="/blog/index.html">blog</a> &middot;
+        <a href="/guides/index.html">guides</a> &middot;
+        <a href="https://www.youtube.com/@threatlevelhuman">youtube</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var rows = document.getElementById("rows");
+      var i = 0;
+      function add(label, value, hot) {
+        var el = document.createElement("div");
+        el.className = "row";
+        el.style.animationDelay = (i * 0.12) + "s";
+        i++;
+        var v = (value === undefined || value === null || value === "") ? "not exposed" : value;
+        el.innerHTML = '<div class="k">' + label + '</div><div class="v' + (hot ? " hot" : "") + '"></div>';
+        el.querySelector(".v").textContent = v;
+        rows.appendChild(el);
+      }
+      var n = navigator, s = screen;
+      var ua = n.userAgent || "";
+      function pick(re, d) { var m = ua.match(re); return m ? m[1] : d; }
+      var browser = /Edg\//.test(ua) ? "Edge" : /OPR\//.test(ua) ? "Opera"
+        : /Firefox\//.test(ua) ? "Firefox" : /Chrome\//.test(ua) ? "Chrome"
+        : /Safari\//.test(ua) ? "Safari" : "your browser";
+      var os = /Windows NT 10/.test(ua) ? "Windows 10 or 11" : /Windows/.test(ua) ? "Windows"
+        : /Mac OS X/.test(ua) ? "macOS" : /Android/.test(ua) ? "Android"
+        : /iPhone|iPad/.test(ua) ? "iOS" : /Linux/.test(ua) ? "Linux" : "your OS";
+      var tz = "";
+      try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (e) {}
+      var conn = n.connection && n.connection.effectiveType ? n.connection.effectiveType : "";
+
+      add("Local time", new Date().toLocaleString());
+      add("Time zone", tz, true);
+      add("Browser", browser);
+      add("Operating system", os);
+      add("Device type", /Mobi|Android|iPhone/.test(ua) ? "phone or tablet" : "desktop or laptop");
+      add("Screen", s ? (s.width + " x " + s.height + ", " + (s.colorDepth || "?") + "-bit color") : "");
+      add("Window size", window.innerWidth + " x " + window.innerHeight);
+      add("Languages", (n.languages || [n.language]).join(", "), true);
+      add("Connection", conn);
+      add("Came from", document.referrer || "typed or bookmarked (you came in clean)");
+      add("Cookies enabled", n.cookieEnabled ? "yes" : "no");
+      add("IP address", "looking up...", true);
+      add("Location", "looking up...", true);
+      add("Network / ISP", "looking up...", true);
+
+      var ipRow, locRow, ispRow;
+      var vs = rows.querySelectorAll(".row .v");
+      ipRow = vs[vs.length - 3]; locRow = vs[vs.length - 2]; ispRow = vs[vs.length - 1];
+
+      fetch("https://ipwho.is/")
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (!d || d.success === false) throw new Error("blocked");
+          ipRow.textContent = d.ip || "hidden";
+          var loc = [d.city, d.region, d.country].filter(Boolean).join(", ");
+          locRow.textContent = loc || "hidden";
+          ispRow.textContent = (d.connection && (d.connection.isp || d.connection.org)) || "hidden";
+          document.getElementById("scan-title").textContent = "scan complete.";
+        })
+        .catch(function () {
+          ipRow.textContent = "lookup blocked";
+          locRow.textContent = "lookup blocked (good instinct, or a blocker stopped it)";
+          ispRow.textContent = "lookup blocked";
+          document.getElementById("scan-title").textContent = "scan complete (lookup blocked).";
+        });
+    })();
+  </script>
+</body>
+</html>
