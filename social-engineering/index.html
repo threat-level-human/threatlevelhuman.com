@@ -221,13 +221,29 @@
         <a class="cta-link" href="/guides/deepfake-red-flags.pdf">Also grab: Deepfake Red Flags (PDF)</a>
       </aside>
       <section class="faq">
-        <h2>Frequently asked questions</h2>
+        <div class="sec-head">
+          <h2>Frequently asked questions</h2>
+          <span class="tag mono">// social-engineering --help</span>
+        </div>
         <details><summary>What is social engineering?</summary><p>Social engineering is the manipulation of people into giving up information, access, or money. Instead of attacking technology, the attacker exploits human trust and judgment.</p></details>
         <details><summary>What are the most common types of social engineering?</summary><p>Phishing, spear phishing, vishing (voice), smishing (text), pretexting, baiting, business email compromise, and MFA-bypass attacks are the most common.</p></details>
         <details><summary>What is the difference between phishing and social engineering?</summary><p>Phishing is one type of social engineering, specifically fraudulent messages. Social engineering is the broader category that also covers phone calls, in-person tricks, and more.</p></details>
         <details><summary>How can I recognize a social engineering attack?</summary><p>Watch for unexpected contact, pressure to act fast, requests for passwords or one-time codes, and details that feel oddly personal. When a message feels personal and urgent, slow down and verify it through a channel you already trust.</p></details>
         <details><summary>Can technology stop social engineering?</summary><p>Tools like spam filters and MFA help, but they cannot fully stop it, because the target is human judgment. The durable defense is a habit of verifying before you act.</p></details>
+        <button class="faq-toggle" type="button" aria-expanded="false">expand all</button>
       </section>
+      <script>
+        (function () {
+          var btn = document.querySelector(".faq-toggle");
+          if (!btn) return;
+          btn.addEventListener("click", function () {
+            var open = btn.getAttribute("aria-expanded") !== "true";
+            document.querySelectorAll(".faq details").forEach(function (d) { d.open = open; });
+            btn.setAttribute("aria-expanded", open ? "true" : "false");
+            btn.textContent = open ? "collapse all" : "expand all";
+          });
+        })();
+      </script>
       <div class="cta-row" style="margin-top:34px;">
         <a class="btn solid" href="https://threatlevelhuman.substack.com/subscribe" target="_blank" rel="noopener">get the weekly briefing</a>
         <a class="btn" href="/#episodes">watch the briefings</a>

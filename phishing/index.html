@@ -166,14 +166,15 @@
       </section>
       <section class="pillar-sec">
         <h2>How to spot a phishing email</h2>
+        <p>The single best habit is to read a message in order, from the top down, before you react to it. <b>Head to toe, check as you go.</b> Start at the subject, then the sender's name, then the real address, then any link, and only then the body. Phishing is written to pull your eyes straight to the body and the call to action, which is exactly why working downward catches it.</p>
+        <p class="callout">Head to toe, check as you go: subject, sender name, sender address, links, then body. Work down deliberately and you will catch the fakes the body is trying to rush you past.</p>
         <ul>
-          <li>The display name looks right but the actual address does not match the real domain.</li>
-          <li>A lookalike domain, with an extra letter, a hyphen, or a different ending.</li>
-          <li>Urgency or a threat: your account will be closed, a payment failed, act now.</li>
-          <li>A request for your password, a one-time code, or a payment.</li>
-          <li>A link whose real destination, shown when you hover over it, does not match the text.</li>
-          <li>An unexpected attachment, especially one that asks you to enable content.</li>
-          <li>Requests for gift cards, wire transfers, or cryptocurrency.</li>
+          <li><b>Subject:</b> urgency or a threat, your account will be closed, a payment failed, act now.</li>
+          <li><b>Sender name:</b> a display name that looks right but does not match the actual address.</li>
+          <li><b>Sender address and domain:</b> a lookalike domain with an extra letter, a hyphen, or a different ending.</li>
+          <li><b>Links:</b> hover to see the real destination. If it does not match the text or the real brand, stop.</li>
+          <li><b>Attachments:</b> anything you did not expect, especially files that ask you to enable content.</li>
+          <li><b>Body:</b> requests for your password, a one-time code, a payment, gift cards, wire transfers, or cryptocurrency.</li>
         </ul>
         <p>Old advice said to look for bad spelling. Do not rely on that. Modern phishing, often written with AI, is polished and grammatically clean.</p>
       </section>
@@ -217,13 +218,29 @@
 
       </aside>
       <section class="faq">
-        <h2>Frequently asked questions</h2>
+        <div class="sec-head">
+          <h2>Frequently asked questions</h2>
+          <span class="tag mono">// phishing --help</span>
+        </div>
         <details><summary>What is phishing?</summary><p>Phishing is a fraudulent message that impersonates someone you trust to trick you into clicking a link, opening a file, or giving up a password or payment.</p></details>
         <details><summary>How do I spot a phishing email?</summary><p>Look for a mismatched sender address, lookalike domains, urgency or threats, requests for passwords or one-time codes, and links whose real destination does not match the text. Do not rely on spelling mistakes, modern phishing is clean.</p></details>
         <details><summary>What are the main types of phishing?</summary><p>Email phishing, spear phishing, whaling and business email compromise, smishing (SMS), vishing (voice), quishing (QR codes), clone phishing, and adversary-in-the-middle attacks.</p></details>
         <details><summary>Can phishing get past multi-factor authentication?</summary><p>Yes. Adversary-in-the-middle phishing relays your login in real time to capture both your password and your one-time code, then steals the session. Verifying the site before you log in still matters.</p></details>
         <details><summary>What should I do if I clicked a phishing link?</summary><p>Change the password right away and anywhere you reused it, sign out all sessions, strengthen MFA, report it to your IT team or bank, and watch the accounts for unusual activity.</p></details>
+        <button class="faq-toggle" type="button" aria-expanded="false">expand all</button>
       </section>
+      <script>
+        (function () {
+          var btn = document.querySelector(".faq-toggle");
+          if (!btn) return;
+          btn.addEventListener("click", function () {
+            var open = btn.getAttribute("aria-expanded") !== "true";
+            document.querySelectorAll(".faq details").forEach(function (d) { d.open = open; });
+            btn.setAttribute("aria-expanded", open ? "true" : "false");
+            btn.textContent = open ? "collapse all" : "expand all";
+          });
+        })();
+      </script>
       <div class="cta-row" style="margin-top:34px;">
         <a class="btn solid" href="https://threatlevelhuman.substack.com/subscribe" target="_blank" rel="noopener">get the weekly briefing</a>
         <a class="btn" href="/#episodes">watch the briefings</a>

@@ -93,6 +93,7 @@ h3 { font-size: 1.2rem; }
 .nav a:hover { color: var(--cyan); text-decoration: none; }
 
 /* ---------- prompt motif ---------- */
+.kicker { color: var(--gray); font-family: var(--mono); }   /* grey command text everywhere, like the hero */
 .prompt::before {
   content: "user@threatlevel:~$ ";
   color: var(--cyan);
@@ -122,7 +123,8 @@ h3 { font-size: 1.2rem; }
   font-size: 0.9rem;
   margin-bottom: 14px;
 }
-.hero h1 { margin-bottom: 0.15em; }
+/* lowercase wordmark per the style guide, but bumped large so it still dominates the hero */
+.hero h1 { margin-bottom: 0.15em; text-transform: none; font-size: clamp(2.4rem, 7.5vw, 4.4rem); letter-spacing: -0.5px; }
 .hero h1 .lvl { color: var(--cyan); }
 .tagline {
   font-family: var(--mono);
@@ -324,6 +326,12 @@ section { padding: 56px 0; border-bottom: 1px solid var(--line); }
 }
 .faq summary::marker { color: var(--amber); }
 .faq details p { color: var(--gray); margin: 10px 0 4px; }
+.faq-toggle {
+  margin-top: 16px; background: transparent; border: 1px solid var(--line);
+  color: var(--cyan); font-family: var(--mono); font-size: 0.82rem;
+  padding: 6px 13px; border-radius: 6px; cursor: pointer;
+}
+.faq-toggle:hover { border-color: var(--cyan); }
 
 /* ---------- footer ---------- */
 footer {
