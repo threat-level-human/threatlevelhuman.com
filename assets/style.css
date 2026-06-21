@@ -436,3 +436,6 @@ footer a:hover { color: var(--cyan); }
 @media (prefers-reduced-motion: reduce) {
   .spin::before, .cursor { animation: none; }
 }
+
+/* watch-the-episode CTA on blog posts */
+.watch-cta { margin: 4px 0 20px; }
