@@ -457,11 +457,22 @@ footer a:hover { color: var(--cyan); }
   color: transparent;
   animation: link-shimmer 7s linear infinite;
 }
-/* the YouTube link gets YouTube red with a white shimmer */
+/* the YouTube link gets YouTube red with a thin white glint */
 .nav a[href*="youtube"],
 .foot-grid a[href*="youtube"] {
-  background-image: linear-gradient(90deg, #FF0000, #FFFFFF, #FF0000);
+  background-image: linear-gradient(90deg, #FF0000 0%, #FF0000 43%, #FFFFFF 50%, #FF0000 57%, #FF0000 100%);
 }
+/* Stagger each link's phase so the shimmer reads as ONE wave travelling left-to-right across the
+   whole bar (episodes -> ... -> youtube) instead of every link pulsing in sync ("duplicate" look).
+   The 7s period split into ~1s steps means the wave exits the last link as it re-enters the first. */
+.nav a:nth-child(1), .foot-grid a:nth-child(1) { animation-delay: 0s; }
+.nav a:nth-child(2), .foot-grid a:nth-child(2) { animation-delay: -1s; }
+.nav a:nth-child(3), .foot-grid a:nth-child(3) { animation-delay: -2s; }
+.nav a:nth-child(4), .foot-grid a:nth-child(4) { animation-delay: -3s; }
+.nav a:nth-child(5), .foot-grid a:nth-child(5) { animation-delay: -4s; }
+.nav a:nth-child(6), .foot-grid a:nth-child(6) { animation-delay: -5s; }
+.nav a:nth-child(7), .foot-grid a:nth-child(7) { animation-delay: -6s; }
+.nav a:nth-child(8), .foot-grid a:nth-child(8) { animation-delay: -7s; }
 /* the Mirror link gets a chrome/silver "mirror" shimmer (faster, brighter) so it stands out
    from the brand-colored links, top and bottom of every page */
 .nav a.mirror-link,
