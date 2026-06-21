@@ -194,9 +194,12 @@ section { padding: 56px 0; border-bottom: 1px solid var(--line); }
   overflow: hidden;
 }
 .feature .body { padding: 30px; }
+/* Pin the thumb to a true 16:9 box (align-self:start stops it stretching to the tall text column),
+   so the whole video thumbnail shows instead of being cropped to fill an over-tall cell. */
 .feature .thumb {
   background: var(--navy-3) center/cover no-repeat;
-  min-height: 220px;
+  aspect-ratio: 16 / 9;
+  align-self: start;
   border-left: 1px solid var(--line);
   position: relative;
   display: block;
@@ -360,7 +363,7 @@ footer a:hover { color: var(--cyan); }
 
 @media (max-width: 760px) {
   .feature { grid-template-columns: 1fr; }
-  .feature .thumb { border-left: 0; border-top: 1px solid var(--line); min-height: 160px; }
+  .feature .thumb { border-left: 0; border-top: 1px solid var(--line); }
   .nav a:not(:last-child) { display: none; }
 }
 
