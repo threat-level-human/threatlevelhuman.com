@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MFA Under Siege: MFA bypass and push bombing explained | threat level: human</title>
+  <meta name="description" content="Multi-factor authentication is not a silver bullet. MFA fatigue, push bombing, and SIM swaps let attackers walk past the second factor. Here is how, and how to harden it." />
+  <link rel="canonical" href="https://threatlevelhuman.com/episodes/mfa-under-siege.html" />
+  <meta name="theme-color" content="#0A0E1A" />
+
+  <!-- Open Graph / LinkedIn -->
+  <meta property="og:type" content="video.episode" />
+  <meta property="og:site_name" content="threat level: human" />
+  <meta property="og:title" content="MFA Under Siege | threat level: human" />
+  <meta property="og:description" content="Multi-factor authentication is not a silver bullet. MFA fatigue, push bombing, and SIM swaps let attackers walk past the second factor. Here is how, and how to harden it." />
+  <meta property="og:url" content="https://threatlevelhuman.com/episodes/mfa-under-siege.html" />
+  <meta property="og:image" content="https://i.ytimg.com/vi/k41Q-7ml5lI/maxresdefault.jpg" />
+  <meta property="article:published_time" content="2026-05-15" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MFA Under Siege" />
+  <meta name="twitter:description" content="Multi-factor authentication is not a silver bullet. MFA fatigue, push bombing, and SIM swaps let attackers walk past the second factor. Here is how, and how to harden it." />
+  <meta name="twitter:image" content="https://i.ytimg.com/vi/k41Q-7ml5lI/maxresdefault.jpg" />
+
+  <!-- schema.org VideoObject -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "MFA Under Siege",
+  "description": "Multi-factor authentication is not a silver bullet. MFA fatigue, push bombing, and SIM swaps let attackers walk past the second factor. Here is how, and how to harden it.",
+  "thumbnailUrl": [
+    "https://i.ytimg.com/vi/k41Q-7ml5lI/maxresdefault.jpg"
+  ],
+  "uploadDate": "2026-05-15",
+  "contentUrl": "https://www.youtube.com/watch?v=k41Q-7ml5lI",
+  "embedUrl": "https://www.youtube.com/embed/k41Q-7ml5lI",
+  "publisher": {
+    "@type": "Organization",
+    "name": "threat level: human",
+    "url": "https://threatlevelhuman.com/"
+  },
+  "isPartOf": {
+    "@type": "TVSeries",
+    "name": "threat level: human"
+  }
+}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brandmark" href="../index.html">threat level: <b>human</b></a>
+      <nav class="nav">
+        <a href="../index.html#episodes">episodes</a>
+        <a href="../blog/index.html">blog</a>
+        <a href="../index.html#upcoming">upcoming</a>
+        <a href="https://threatlevelhuman.substack.com">newsletter</a>
+        <a href="https://www.youtube.com/@threatlevelhuman">youtube</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="article">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="../index.html">~</a> / <a href="../index.html#episodes">episodes</a> / ep03</p>
+
+      <h1>MFA Under Siege</h1>
+      <p class="meta">
+        <span>EP03</span><span class="sep">|</span>
+        <span>2026-05-15</span><span class="sep">|</span>
+        <span class="cyan">cybersecurity briefing</span>
+      </p>
+
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/k41Q-7ml5lI"
+          title="MFA Under Siege — threat level: human"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="content">
+        <section class="tldr">
+          <h2>// TL;DR</h2>
+          <ul>
+            <li>Push-based MFA can be defeated by spamming approvals until the user taps yes.</li>
+            <li>SIM swaps move the SMS code to the attacker&#x27;s phone.</li>
+            <li>The weak link is the approval decision, not the cryptography.</li>
+            <li>Defense: number matching, phishing-resistant FIDO2 keys, and SIM-swap protections.</li>
+          </ul>
+        </section>
+
+        <h2>What happened</h2>
+          <p>Multi-factor authentication is one of the highest-value controls you can turn on, and it is also widely misunderstood as unbreakable. It is not. The attacks that beat it do not break the math; they target the moment a human decides to approve.</p>
+          <p>MFA fatigue, or push bombing, is the simplest version. An attacker who already has the password triggers approval prompt after approval prompt. Eventually a tired or distracted user taps approve just to make the buzzing stop. The login succeeds, and the attacker is in.</p>
+          <p>SIM swapping attacks the SMS code path. By social-engineering a mobile carrier into porting the victim&#x27;s number to a new SIM, the attacker receives the one-time codes directly. Again, no cryptography is broken; a help desk was talked into a change.</p>
+          <p>The hardening path is concrete. Move from raw push approvals to number matching, where the user must type a code shown on the login screen. Better still, deploy phishing-resistant FIDO2 security keys or passkeys, which cannot be relayed or approved by mistake. And lock down the carrier account with a port-out PIN so a SIM swap is not a phone call away.</p>
+          <p class="callout">MFA stops password reuse. It does not stop a tired human approving a push at 2 a.m.</p>
+
+        <h2>How to defend against it</h2>
+        <p>
+          The through-line of every threat level: human briefing is the same: the
+          exploited control is human, so the durable defense is a habit, not just
+          a product. Watch the full breakdown above, and subscribe on
+          <a href="https://www.youtube.com/@threatlevelhuman">YouTube</a> for the weekly decode.
+        </p>
+
+        <aside class="newsletter-cta">
+          <h2>// Free weekly briefing</h2>
+          <p>
+            Grab the free one-page field guide, <em>Social Engineering Red
+            Flags</em>, and get the human-perspective cyber briefing in your
+            inbox every week.
+          </p>
+          <a class="cta-button" href="https://threatlevelhuman.substack.com">Subscribe on Substack -&gt;</a>
+          <a class="cta-link" href="../guides/social-engineering-red-flags.pdf">Download the field guide (PDF)</a>
+        </aside>
+
+        <a class="back-link" href="../index.html#episodes">&lt;- back to all episodes</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap foot-grid">
+      <div>&copy; 2026 threat level: human &middot; the attack vector you can&#x27;t patch.</div>
+      <div>
+        <a href="../blog/index.html">blog</a> &middot;
+        <a href="https://threatlevelhuman.substack.com">newsletter</a> &middot;
+        <a href="https://www.youtube.com/@threatlevelhuman">youtube</a> &middot;
+        <a href="../sitemap.xml">sitemap</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
