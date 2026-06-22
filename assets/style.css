@@ -575,6 +575,11 @@ footer a:hover { color: var(--cyan); }
 .foot-grid a[href*="youtube"] {
   background-image: linear-gradient(90deg, #FF0000 0%, #FF0000 43%, #FFFFFF 50%, #FF0000 57%, #FF0000 100%);
 }
+/* the Ego link gets the brand amber with a thin white glint (matches Ego's accent) */
+.nav a[href*="/ego/"],
+.foot-grid a[href*="/ego/"] {
+  background-image: linear-gradient(90deg, #FFB74D 0%, #FFB74D 43%, #FFFFFF 50%, #FFB74D 57%, #FFB74D 100%);
+}
 /* Stagger each link's phase so the shimmer reads as ONE wave travelling left-to-right across the
    whole bar (episodes -> ... -> youtube) instead of every link pulsing in sync ("duplicate" look).
    The 7s period split into ~1s steps means the wave exits the last link as it re-enters the first. */
@@ -645,14 +650,22 @@ footer a:hover { color: var(--cyan); }
 .ego-out.done::after { content: "$ _"; }
 @keyframes ego-blink { 50% { opacity: 0; } }
 
+.ego-fig {
+  position: absolute; right: 2%; bottom: 0; width: clamp(150px, 26vw, 290px); z-index: 2;
+  pointer-events: none; animation: ego-float 6.5s ease-in-out infinite;
+}
 .ego-figure {
-  position: absolute; right: 2%; bottom: -8px; width: clamp(150px, 26vw, 290px); height: auto;
+  display: block; width: 100%; height: auto;
   filter: drop-shadow(0 0 26px rgba(79,195,247,0.22));
-  animation: ego-float 6.5s ease-in-out infinite; pointer-events: none; z-index: 2;
+}
+.ego-name {
+  display: block; text-align: center; font-family: "Oswald", sans-serif;
+  font-weight: 700; text-transform: lowercase; letter-spacing: 1px; color: var(--white);
+  font-size: clamp(1.1rem, 3.4vw, 1.6rem); margin-top: 2px;
 }
 @keyframes ego-float {
   0%, 100% { transform: translateY(0) rotate(-1deg); }
-  50%      { transform: translateY(-14px) rotate(1.2deg); }
+  50%      { transform: translateY(-12px) rotate(1.2deg); }
 }
 
 .ego-ask {
@@ -667,10 +680,12 @@ footer a:hover { color: var(--cyan); }
 .ego-ask p { color: var(--gray); max-width: 640px; }
 
 @media (max-width: 760px) {
-  .ego-term .ego-out { padding-right: 20px; min-height: 320px; padding-bottom: 150px; }
-  .ego-figure { width: 120px; right: 6%; bottom: 6px; }
+  /* keep the typed text clear of the figure, and reserve enough height that the whole figure
+     (image + name) sits INSIDE the stage instead of hanging below the frame */
+  .ego-term .ego-out { padding-right: 20px; min-height: 320px; padding-bottom: 200px; }
+  .ego-fig { width: 150px; right: 5%; bottom: 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ego-figure { animation: none; }
+  .ego-fig { animation: none; }
   .ego-out::after { animation: none; }
 }

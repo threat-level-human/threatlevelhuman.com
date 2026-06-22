@@ -24,7 +24,7 @@
     ["", ""],
     ["p", "Social engineers don't pick locks. They ask you to open the door."],
     ["p", "They do it by working your ego: the part of you that wants to"],
-    ["p", "  help, to be trusted, to be right, to move fast, to not look foolish."],
+    ["p", "help, to be trusted, to be right, to move fast, to not look foolish."],
     ["", ""],
     ["p", "That instinct is good. They just aim it at the wrong target."],
     ["", ""],
