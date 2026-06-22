@@ -93,16 +93,17 @@
       out.appendChild(nl);
 
       // blank lines and the slow "boot" line get a short pause, not a per-char type
-      if (ln[1] === "") { setTimeout(nextLine, 160); return; }
+      if (ln[1] === "") { setTimeout(nextLine, 90); return; }
 
       var i = prefix.length;
       function typeChar() {
         node.textContent = full.slice(0, ++i);
         out.scrollTop = out.scrollHeight;
         if (i < full.length) {
-          setTimeout(typeChar, ln[0] === "sys" ? 12 : 18 + Math.random() * 34);
+          // brisk: a touch slower than average reading speed, so you can follow without waiting
+          setTimeout(typeChar, ln[0] === "sys" ? 7 : 9 + Math.random() * 15);
         } else {
-          setTimeout(nextLine, ln[0] === "cmd" ? 360 : 240);
+          setTimeout(nextLine, ln[0] === "cmd" ? 220 : 120);
         }
       }
       typeChar();
