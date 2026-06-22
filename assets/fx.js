@@ -31,15 +31,61 @@
   function rand(a, b) { return a + Math.random() * (b - a); }
   function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
 
+  var EDGE = 8, TRIES = 18;
+
+  // A point is "clear" only if the stack above the page background at (x,y) is transparent layout
+  // containers all the way down to <body> — i.e. NO opaque content box (or image/iframe) covers it.
+  // This lets tokens use empty space ANYWHERE, including gaps in the centre, but never sit hidden
+  // behind a solid box. (#fxbg and its tokens are pointer-events:none, so they're never returned.)
+  function isClear(x, y) {
+    var el = document.elementFromPoint(x, y);
+    if (!el) return false;
+    while (el && el !== document.body && el !== document.documentElement) {
+      var tag = el.tagName;
+      if (tag === "IMG" || tag === "IFRAME" || tag === "VIDEO" || tag === "CANVAS") return false;
+      var m = getComputedStyle(el).backgroundColor.match(/^rgba?\(([\d.,\s]+)\)/);
+      if (m) {
+        var p = m[1].split(",");
+        if ((p.length >= 4 ? parseFloat(p[3]) : 1) > 0.25) return false;  // opaque box covers it
+      }
+      el = el.parentElement;
+    }
+    return true;
+  }
+
+  // Find a viewport spot where the whole token rectangle is clear; null if none after a few tries.
+  function clearSpot(w, h) {
+    var vw = window.innerWidth, vh = window.innerHeight;
+    if (vw - 2 * EDGE < w || vh - 2 * EDGE < h) return null;
+    for (var i = 0; i < TRIES; i++) {
+      var x = rand(EDGE, vw - EDGE - w);
+      var y = rand(Math.max(EDGE, vh * 0.06), vh - EDGE - h);
+      var pts = [[x + 3, y + 3], [x + w - 3, y + 3], [x + 3, y + h - 3],
+                 [x + w - 3, y + h - 3], [x + w / 2, y + h / 2]];
+      var ok = true;
+      for (var j = 0; j < pts.length; j++) {
+        if (!isClear(pts[j][0], pts[j][1])) { ok = false; break; }
+      }
+      if (ok) return { x: x, y: y };
+    }
+    return null;
+  }
+
   function spawn() {
     var t = pick(TOKENS);
     var el = document.createElement("span");
     el.className = "fxtok" + (AMBER.test(t) ? " amber" : "");
     el.textContent = t;
-    el.style.left = rand(4, 80).toFixed(2) + "%";
-    el.style.top = rand(8, 88).toFixed(2) + "%";
     el.style.fontSize = rand(0.85, 2.3).toFixed(2) + "rem";
+    el.style.left = "-9999px";   // off-screen to measure before placing
+    el.style.top = "0";
     layer.appendChild(el);
+
+    var spot = clearSpot(el.offsetWidth, el.offsetHeight);
+    if (!spot) { layer.removeChild(el); return; }   // nowhere clear this cycle -> skip
+    el.style.left = Math.round(spot.x) + "px";
+    el.style.top = Math.round(spot.y) + "px";
+
     requestAnimationFrame(function () { el.classList.add("on"); });   // fade in
     setTimeout(function () { el.classList.remove("on"); }, rand(3400, 5200));  // fade out
     setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 8200);
