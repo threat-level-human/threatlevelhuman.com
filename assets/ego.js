@@ -26,7 +26,7 @@
     ["p", "They do it by working your ego: the part of you that wants to"],
     ["p", "help, to be trusted, to be right, to move fast, to not look foolish."],
     ["", ""],
-    ["p", "That instinct is good. They just aim it at the wrong target."],
+    ["p", "That instinct is good. Attackers just aim it at the wrong target."],
     ["", ""],
     ["p", "So before you click, reply, approve, or pay, do one thing:"],
     ["p", "check your ego."],
