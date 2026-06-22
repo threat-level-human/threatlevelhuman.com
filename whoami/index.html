@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>whoami: what your visit reveals | threat level: human</title>
+  <meta name="description" content="You haven&#x27;t typed a thing, but your connection already revealed your location, network, and device. A live, private demonstration of what an attacker sees before they ever contact you." />
+  <link rel="canonical" href="https://threatlevelhuman.com/whoami/" />
+  <meta name="theme-color" content="#0A0E1A" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="threat level: human" />
+  <meta property="og:title" content="whoami: what your visit reveals | threat level: human" />
+  <meta property="og:description" content="You haven&#x27;t typed a thing, but your connection already revealed your location, network, and device. A live, private demonstration of what an attacker sees before they ever contact you." />
+  <meta property="og:url" content="https://threatlevelhuman.com/whoami/" />
+  <meta property="og:image" content="https://threatlevelhuman.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="whoami: what your visit reveals | threat level: human" />
+  <meta name="twitter:description" content="You haven&#x27;t typed a thing, but your connection already revealed your location, network, and device. A live, private demonstration of what an attacker sees before they ever contact you." />
+  <meta name="twitter:image" content="https://threatlevelhuman.com/og-image.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://threatlevelhuman.com/#org",
+      "name": "threat level: human",
+      "url": "https://threatlevelhuman.com/",
+      "logo": "https://threatlevelhuman.com/icon-512.png",
+      "image": "https://threatlevelhuman.com/og-image.png",
+      "description": "Clear, calm cybersecurity briefings on phishing, social engineering, deepfakes, and the human attack vector. Learn how these attacks actually work and how to spot and stop them.",
+      "sameAs": [
+        "https://www.youtube.com/@threatlevelhuman",
+        "https://threatlevelhuman.substack.com"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://threatlevelhuman.com/#website",
+      "name": "threat level: human",
+      "url": "https://threatlevelhuman.com/",
+      "description": "Clear, calm cybersecurity briefings on phishing, social engineering, deepfakes, and the human attack vector. Learn how these attacks actually work and how to spot and stop them.",
+      "publisher": {
+        "@id": "https://threatlevelhuman.com/#org"
+      },
+      "inLanguage": "en"
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script src="/assets/fx.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brandmark" href="/">threat level: <b>human</b></a>
+      <nav class="nav">
+        <a href="/#episodes">episodes</a>
+        <a href="/blog/index.html">blog</a>
+        <a href="/guides/index.html">guides</a>
+        <a href="/#upcoming">upcoming</a>
+        <a href="https://threatlevelhuman.substack.com" target="_blank" rel="noopener">newsletter</a>
+        <a class="whoami-link" href="/whoami/"><span>who</span><span>am</span><span>i</span></a>
+        <a href="https://www.youtube.com/@threatlevelhuman" target="_blank" rel="noopener">youtube</a>
+      </nav>
+    </div>
+  </header>
+  <main class="hero">
+    <div class="wrap mirror">
+      <p class="kicker prompt">whoami<span class="cursor"></span></p>
+      <h1><span class="lvl">whoami</span></h1>
+      <p class="tagline">// you haven't typed a thing.</p>
+      <p class="lead">
+        You arrived a few seconds ago and told us nothing about yourself. Yet your
+        connection already handed over the details below. This is the raw material of a
+        social-engineering attack: an attacker collects exactly this before they ever
+        contact you, then uses it to build a message that feels personal and safe.
+      </p>
+
+      <section class="scan" aria-label="What your visit revealed">
+        <div class="bar"><span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
+          <span id="scan-title">scanning your connection...</span></div>
+        <div id="rows"></div>
+      </section>
+
+      <div class="map-wrap" id="map-wrap" aria-label="Approximate location of your connection">
+        <iframe id="map-frame" title="Approximate location of your connection" loading="lazy" referrerpolicy="no-referrer"></iframe>
+        <div class="cap">
+          <span>approximate location from your IP, not your exact address, but close enough to be useful to an attacker.</span>
+          <a id="map-link" href="#" target="_blank" rel="noopener">open in Google Maps -&gt;</a>
+        </div>
+      </div>
+
+      <section class="scan trace" id="trace" aria-label="Reconstructed network path">
+        <div class="bar"><span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
+          <span>traceroute to threatlevelhuman.com</span></div>
+        <div class="trace-body" id="trace-body"></div>
+        <div class="cap">reconstructed from your IP metadata, not a live ICMP trace. A real attacker
+          fingerprints the same path: your device, your provider, your region, then the open internet.</div>
+      </section>
+
+      <div class="verdict">
+        <h2>WHY THIS MATTERS</h2>
+        <p>None of this required a hack. The browser offers it, the network reveals it, a
+          public lookup fills in the rest. An attacker pairs your city, your employer's
+          network, and your device into a pretext: a "delivery problem" in your town, an
+          "IT notice" for your exact browser, a "colleague" who knows where you are. The
+          familiarity is the whole game. The defense is to treat unsolicited messages that
+          feel personal as more suspicious, not less.</p>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn solid" href="https://threatlevelhuman.substack.com/subscribe" target="_blank" rel="noopener">get the weekly briefing</a>
+        <a class="btn" href="/#episodes">watch how these attacks work</a>
+      </div>
+
+      <p class="privacy">
+        <b>Privacy:</b> nothing on this page is stored, logged, or sent to us. Everything is
+        computed in your own browser. The network, location, and reverse-DNS lines use public
+        lookups your browser calls directly; we never see them. Reload and it is gone. Practicing
+        what we preach.
+      </p>
+    </div>
+  </main>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://threatlevelhuman.com/whoami/",
+  "url": "https://threatlevelhuman.com/whoami/",
+  "name": "whoami: what your visit reveals",
+  "description": "A live, private demonstration of what your connection reveals to an attacker before they ever contact you.",
+  "isPartOf": {
+    "@id": "https://threatlevelhuman.com/#org"
+  },
+  "inLanguage": "en"
+}
+  </script>
+  <script src="/assets/whoami.js" defer></script>
+
+  <footer>
+    <div class="wrap foot-grid">
+      <div>&copy; 2026 threat level: human &middot; the attack vector you can&#x27;t patch.</div>
+      <div>
+        <a href="/#episodes">episodes</a> &middot;
+        <a href="/blog/index.html">blog</a> &middot;
+        <a href="/guides/index.html">guides</a> &middot;
+        <a href="/#upcoming">upcoming</a> &middot;
+        <a href="https://threatlevelhuman.substack.com" target="_blank" rel="noopener">newsletter</a> &middot;
+        <a class="whoami-link" href="/whoami/"><span>who</span><span>am</span><span>i</span></a> &middot;
+        <a href="https://www.youtube.com/@threatlevelhuman">youtube</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

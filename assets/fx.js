@@ -6,13 +6,19 @@
   var mq = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
   if (mq && mq.matches) return;
 
-  // public threat-actor designations + social-engineering terms + shell flavor
+  // public threat-actor designations + social-engineering terms + harmless shell flavor.
+  // SAFETY: every shell snippet here is read-only/informational. Nothing destructive, nothing that
+  // opens a listener or executes an unknown file, so a visitor who copies one can't damage anything.
   var TOKENS = [
     "APT28", "APT29", "Lazarus Group", "Sandworm", "FIN7", "Scattered Spider", "Kimsuky",
     "Charming Kitten", "Cozy Bear", "Fancy Bear", "Wizard Spider", "Mustang Panda", "Volt Typhoon",
     "phishing", "spear phishing", "vishing", "smishing", "pretexting", "BEC", "MFA fatigue",
     "AiTM", "credential harvest", "payload staged", "0day", "C2 beacon", "lateral movement",
-    "sudo -l", "rm -rf /", "./exploit", "whoami", "nc -lvnp 4444", "access granted",
+    "access granted", "session hijacked", "pivot",
+    // read-only / informational shell snippets only
+    "whoami", "id", "uname -a", "hostname", "ip a", "ifconfig", "netstat -tlnp", "ss -tlnp",
+    "ps aux", "ls -la", "cat /etc/hostname", "env | grep", "history", "last -n 5", "w", "arp -a",
+    "dig +short", "whois", "curl ifconfig.me", "ssh -V", "openssl version", "base64 -d", "route -n",
     "⚠ social engineering", "[!] human factor", "check your ego", "head to toe, check as you go"
   ];
   var AMBER = /ego|human|social|⚠|\[!\]/;
@@ -32,7 +38,7 @@
     el.textContent = t;
     el.style.left = rand(4, 80).toFixed(2) + "%";
     el.style.top = rand(8, 88).toFixed(2) + "%";
-    el.style.fontSize = rand(0.85, 1.7).toFixed(2) + "rem";
+    el.style.fontSize = rand(0.85, 2.3).toFixed(2) + "rem";
     layer.appendChild(el);
     requestAnimationFrame(function () { el.classList.add("on"); });   // fade in
     setTimeout(function () { el.classList.remove("on"); }, rand(3400, 5200));  // fade out
