@@ -37,17 +37,77 @@
     : /iPhone|iPad/.test(ua) ? "iOS" : /Linux/.test(ua) ? "Linux" : "your OS";
   var browserTz = "";
   try { browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (e) {}
-  var conn = n.connection && n.connection.effectiveType ? n.connection.effectiveType : "";
+  // The actual GPU, straight from WebGL's unmasked renderer string -- a website can read your exact
+  // graphics card with no permission prompt. (resistFingerprinting / locked-down browsers mask it.)
+  function gpuInfo() {
+    try {
+      var c = document.createElement("canvas");
+      var gl = c.getContext("webgl") || c.getContext("experimental-webgl");
+      if (!gl) return "";
+      var dbg = gl.getExtension("WEBGL_debug_renderer_info");
+      var r = dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER);
+      return r ? String(r) : "";
+    } catch (e) { return ""; }
+  }
+
+  // A stable, cookieless fingerprint: a small hash of the device traits above + a canvas/font render
+  // that differs subtly per machine. The point of the page -- you can be re-recognised with no cookie.
+  function fnv1a(str) {
+    var h = 0x811c9dc5;
+    for (var k = 0; k < str.length; k++) {
+      h ^= str.charCodeAt(k);
+      h = (h + ((h << 1) + (h << 4) + (h << 7) + (h << 8) + (h << 24))) >>> 0;
+    }
+    return ("0000000" + h.toString(16)).slice(-8);
+  }
+  function canvasTrait() {
+    try {
+      var c = document.createElement("canvas"); c.width = 240; c.height = 60;
+      var x = c.getContext("2d");
+      x.textBaseline = "top"; x.font = "16px 'Arial'";
+      x.fillStyle = "#069"; x.fillRect(2, 2, 200, 40);
+      x.fillStyle = "#f60"; x.fillText("threat level: human ⚠ ego", 4, 8);
+      x.strokeStyle = "#4FC3F7"; x.beginPath(); x.arc(60, 30, 18, 0, Math.PI * 2); x.stroke();
+      return c.toDataURL();
+    } catch (e) { return ""; }
+  }
+
+  var gpu = gpuInfo();
+  var cores = n.hardwareConcurrency ? (n.hardwareConcurrency + " logical cores") : "";
+  var ram = n.deviceMemory ? ("about " + n.deviceMemory + " GB") : "";   // Chromium only, coarse
+  var dpr = window.devicePixelRatio || 1;
+  var touch = n.maxTouchPoints || 0;
+  var fp = fnv1a([
+    ua, (n.languages || []).join(","), browserTz,
+    s ? (s.width + "x" + s.height + "x" + s.colorDepth) : "", dpr,
+    n.hardwareConcurrency || "", n.deviceMemory || "", gpu, canvasTrait()
+  ].join("|"));
+
+  // navigator.connection only exists in Chromium browsers; effectiveType is a coarse SPEED bucket
+  // (slow-2g/2g/3g/4g), not "you're on cellular". Show the real numbers it also exposes when present.
+  var c = n.connection, connLine = "";
+  if (c) {
+    var cp = [];
+    if (c.effectiveType) cp.push(c.effectiveType + " tier");
+    if (c.downlink) cp.push("about " + c.downlink + " Mbps");
+    if (c.rtt != null) cp.push(c.rtt + " ms round-trip");
+    connLine = cp.join(", ");
+  }
 
   // --- what the browser hands over, no network call needed ---
   add(null, "Local time", new Date().toLocaleString());
   add(null, "Browser", browser);
   add(null, "Operating system", os);
   add(null, "Device type", /Mobi|Android|iPhone/.test(ua) ? "phone or tablet" : "desktop or laptop");
+  add(null, "Graphics (GPU)", gpu, true);
+  add(null, "Processor", cores, true);
+  add(null, "Memory", ram, true);
   add(null, "Screen", s ? (s.width + " x " + s.height + ", " + (s.colorDepth || "?") + "-bit color") : "");
+  add(null, "Display detail", dpr + "x pixel ratio" + (touch ? ", " + touch + " touch points" : ", no touch"));
   add(null, "Window size", window.innerWidth + " x " + window.innerHeight);
   add(null, "Languages", (n.languages || [n.language]).join(", "), true);
-  add(null, "Connection", conn);
+  add(null, "Connection speed (est.)", connLine);
+  add(null, "Device fingerprint", fp + "  ·  recognises this browser with no cookie", true);
   add(null, "Came from", document.referrer || "typed or bookmarked (you came in clean)");
   add(null, "Cookies enabled", n.cookieEnabled ? "yes" : "no");
 
