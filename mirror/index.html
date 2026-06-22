@@ -52,6 +52,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script src="/assets/fx.js" defer></script>
   <style>
     .mirror { max-width: 860px; margin: 0 auto; padding: 16px; }
     .mirror .lead { color: var(--gray); max-width: 640px; }
@@ -133,9 +134,10 @@
         <a href="/#episodes">episodes</a>
         <a href="/blog/index.html">blog</a>
         <a href="/guides/index.html">guides</a>
+        <a href="/#upcoming">upcoming</a>
         <a href="https://threatlevelhuman.substack.com" target="_blank" rel="noopener">newsletter</a>
         <a class="mirror-link" href="/mirror/">mirror</a>
-        <a href="https://www.youtube.com/@threatlevelhuman">youtube</a>
+        <a href="https://www.youtube.com/@threatlevelhuman" target="_blank" rel="noopener">youtube</a>
       </nav>
     </div>
   </header>
@@ -205,9 +207,10 @@
         <a href="/#episodes">episodes</a> &middot;
         <a href="/blog/index.html">blog</a> &middot;
         <a href="/guides/index.html">guides</a> &middot;
+        <a href="/#upcoming">upcoming</a> &middot;
         <a href="https://threatlevelhuman.substack.com" target="_blank" rel="noopener">newsletter</a> &middot;
         <a class="mirror-link" href="/mirror/">mirror</a> &middot;
-        <a href="https://www.youtube.com/@threatlevelhuman">youtube</a>
+        <a href="https://www.youtube.com/@threatlevelhuman" target="_blank" rel="noopener">youtube</a>
       </div>
     </div>
   </footer>
@@ -358,8 +361,9 @@
       function buildTrace(o) {
         if (traceBuilt) return;
         traceBuilt = true;
-        var net = o.isp || "your provider";
-        if (o.asn) net += " (AS" + String(o.asn).replace(/^AS/i, "") + ")";
+        // just the ASN here -- the ISP company name is already shown in the rows above; this keeps
+        // the reverse-DNS host (e.g. ...comcast.net) on one line
+        var net = o.asn ? ("AS" + String(o.asn).replace(/^AS/i, "")) : "your provider";
         var loc = [o.city, o.region, o.country].filter(Boolean).join(", ") || "unknown";
         // each hop = array of {t: text, cls: optional color class}; hop 2 flagged for live rDNS
         traceHops = [
