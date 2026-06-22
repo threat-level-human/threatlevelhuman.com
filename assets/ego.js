@@ -43,6 +43,25 @@
     return s;
   }
 
+  // Glide Ego alongside the typing: p=0 -> near the first line, p=1 -> settled at the bottom.
+  // He's positioned by translateY (CSS transitions it smoothly) so the box growing a line never
+  // makes him jump. The idle float lives on the inner .ego-bob layer, so the two never collide.
+  var figEl = document.getElementById("ego-fig");
+  var box = out.closest(".ego-term");
+  var lastP = 0;
+  function place(p) {
+    lastP = p;
+    if (!figEl || !box) return;
+    var figH = figEl.offsetHeight, boxH = box.clientHeight;
+    var minY = 12, maxY = Math.max(minY, boxH - figH - 12);
+    figEl.style.transform = "translateY(" + (minY + (maxY - minY) * p) + "px)";
+  }
+  window.addEventListener("resize", function () { place(lastP); });
+  if (figEl) {
+    var fimg = figEl.querySelector("img");
+    if (fimg) fimg.addEventListener("load", function () { place(lastP); });
+  }
+
   function renderAll() {
     out.textContent = "";
     LINES.forEach(function (ln) {
@@ -50,6 +69,7 @@
       out.appendChild(document.createTextNode("\n"));
     });
     out.classList.add("done");
+    place(1);
   }
 
   var done = false;
@@ -58,10 +78,12 @@
     done = true;
     if (reduce) { renderAll(); return; }
 
+    place(0);
     var li = 0;
     function nextLine() {
-      if (li >= LINES.length) { out.classList.add("done"); return; }
+      if (li >= LINES.length) { out.classList.add("done"); place(1); return; }
       var ln = LINES[li++];
+      place(li / LINES.length);  // glide down to track the line being written
       var prefix = ln[0] === "cmd" ? "$ " : "";
       var full = prefix + ln[1];
       var node = span(ln[0], "");

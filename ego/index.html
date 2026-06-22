@@ -51,12 +51,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/style.css?v=3cfdd026" />
+  <link rel="stylesheet" href="/assets/style.css?v=095e95d3" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <script src="/assets/fx.js?v=3cfdd026" defer></script>
+  <script src="/assets/fx.js?v=095e95d3" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -85,9 +85,11 @@
           <div class="bar"><span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
             <span>ego@threatlevelhuman: ~</span></div>
           <pre class="ego-out" id="ego-out" aria-live="polite"></pre>
-          <div class="ego-fig">
-          <img class="ego-figure" src="/assets/ego-figure.png?v=3cfdd026" alt="Ego, the faceless threat level human mascot" />
-          <span class="ego-name">ego</span>
+          <div class="ego-fig" id="ego-fig">
+          <div class="ego-bob">
+            <img class="ego-figure" src="/assets/ego-figure.png?v=095e95d3" alt="Ego, the faceless threat level human mascot" />
+            <span class="ego-name">ego</span>
+          </div>
         </div>
         </div>
       </section>
@@ -112,13 +114,23 @@
           urge to be useful, and slow down exactly when it tells you to hurry.</p>
       </div>
 
-      <section class="scan" aria-label="How to check your ego">
+      <div class="verdict">
+        <h2>HEAD TO TOE, CHECK AS YOU GO</h2>
+        <p>It is the same move a medic makes on a patient: start at the top and work down, missing
+          nothing. A message has a top and a bottom too, so read it that way. Start at the
+          <b>head</b> (who it is really from), work down through the <b>body</b> (the links and where
+          they actually point), and finish at the <b>toe</b> (the thing it is asking you to do).
+          Check each part as you go, and the trick almost always shows itself before you reach the
+          bottom. The last stop is the one people skip: <b>your own ego</b>.</p>
+      </div>
+
+      <section class="scan" aria-label="How to check a message head to toe">
         <div class="bar"><span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
           <span>check your ego: head to toe, check as you go</span></div>
-        <div class="row"><span class="k">the sender</span><span class="v">Do you actually know them, or just recognize the name? Look at the real address, not the display name.</span></div>
-        <div class="row"><span class="k">the link</span><span class="v">Hover before you click. Does the domain match, letter for letter, the place it claims to be?</span></div>
-        <div class="row"><span class="k">the ask</span><span class="v">Urgency, secrecy, money, or credentials. The more it rushes or flatters you, the more it deserves a second look.</span></div>
-        <div class="row"><span class="k">your ego</span><span class="v">Is this message working on your pride, your fear, or your wish to help? That feeling is the attack. Check it.</span></div>
+        <div class="row"><span class="k">head &middot; the sender</span><span class="v">Top of the message: do you actually know them, or just recognize the name? Look at the real address, not the display name.</span></div>
+        <div class="row"><span class="k">body &middot; the link</span><span class="v">Hover before you click. Does the domain match, letter for letter, the place it claims to be?</span></div>
+        <div class="row"><span class="k">toe &middot; the ask</span><span class="v">The bottom line: urgency, secrecy, money, or credentials. The more it rushes or flatters you, the more it deserves a second look.</span></div>
+        <div class="row"><span class="k">last &middot; your ego</span><span class="v">Is this message working on your pride, your fear, or your wish to help? That feeling is the attack. Check it.</span></div>
       </section>
 
       <div class="ego-ask">
@@ -152,7 +164,7 @@
   "inLanguage": "en"
 }
   </script>
-  <script src="/assets/ego.js?v=3cfdd026" defer></script>
+  <script src="/assets/ego.js?v=095e95d3" defer></script>
 
   <footer>
     <div class="wrap foot-grid">
