@@ -624,3 +624,53 @@ footer a:hover { color: var(--cyan); }
     animation: none; -webkit-text-fill-color: initial; color: var(--cyan);
   }
 }
+
+/* --- Meet Ego page ------------------------------------------------------- */
+.wrap.ego { max-width: 900px; }
+.ego-stage { position: relative; margin: 26px 0 10px; }
+.ego-term { margin: 0; }
+.ego-term .ego-out {
+  font-family: var(--mono); font-size: 0.92rem; line-height: 1.7; color: var(--white);
+  margin: 0; padding: 18px 20px; min-height: 360px; white-space: pre-wrap; word-break: break-word;
+  /* reserve room on the right so typed lines don't run under the figure */
+  padding-right: clamp(20px, 30%, 320px);
+}
+.ego-out .el-p { color: var(--cyan); }
+.ego-out .el-sys { color: var(--gray); }
+.ego-out .el-cmd { color: var(--amber); }
+.ego-out::after {
+  content: "_"; color: var(--cyan); font-weight: 700;
+  animation: ego-blink 1.05s steps(1) infinite;
+}
+.ego-out.done::after { content: "$ _"; }
+@keyframes ego-blink { 50% { opacity: 0; } }
+
+.ego-figure {
+  position: absolute; right: 2%; bottom: -8px; width: clamp(150px, 26vw, 290px); height: auto;
+  filter: drop-shadow(0 0 26px rgba(79,195,247,0.22));
+  animation: ego-float 6.5s ease-in-out infinite; pointer-events: none; z-index: 2;
+}
+@keyframes ego-float {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%      { transform: translateY(-14px) rotate(1.2deg); }
+}
+
+.ego-ask {
+  margin: 30px 0 10px; padding: 22px 24px; background: var(--navy-2);
+  border: 1px solid var(--line); border-left: 3px solid var(--cyan); border-radius: 10px;
+}
+.ego-ask h2 { font-family: var(--mono); color: var(--cyan); margin: 0 0 8px; font-size: 1rem; }
+.ego-ask .soon {
+  font-size: 0.62rem; letter-spacing: 1px; text-transform: uppercase; color: var(--navy);
+  background: var(--amber); padding: 2px 8px; border-radius: 999px; vertical-align: middle; margin-left: 6px;
+}
+.ego-ask p { color: var(--gray); max-width: 640px; }
+
+@media (max-width: 760px) {
+  .ego-term .ego-out { padding-right: 20px; min-height: 320px; padding-bottom: 150px; }
+  .ego-figure { width: 120px; right: 6%; bottom: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ego-figure { animation: none; }
+  .ego-out::after { animation: none; }
+}
