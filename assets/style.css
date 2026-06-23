@@ -110,6 +110,21 @@ h3 { font-size: 1.2rem; }
 }
 @keyframes blink { 50% { opacity: 0; } }
 
+/* ---------- ambient background pulse (fx.js) ----------
+   Rare, faint terminal tokens (APT names, social-engineering terms, read-only shell snippets) fade
+   in and out behind the content. fx.js hit-tests each spot so they only land where the background
+   shows, never behind a content box. Kept very low opacity so it reads as atmosphere, not noise. */
+#fxbg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+body > *:not(#fxbg) { position: relative; z-index: 1; }   /* content sits above the pulse layer */
+.fxtok {
+  position: absolute; font-family: var(--mono); color: var(--cyan); white-space: nowrap;
+  letter-spacing: 1px; opacity: 0; text-shadow: 0 0 18px currentColor;
+  transition: opacity 2.4s ease; will-change: opacity;
+}
+.fxtok.amber { color: var(--amber); }
+.fxtok.on { opacity: 0.085; }   /* faint: present but never competes with the content */
+@media (prefers-reduced-motion: reduce) { #fxbg { display: none; } }
+
 /* ---------- hero ---------- */
 .hero {
   padding: 72px 0 56px;
@@ -540,4 +555,9 @@ footer a:hover { color: var(--cyan); }
 
 /* watch-the-episode CTA on blog posts */
 .watch-cta { margin: 4px 0 20px; }
+
+/* per-episode primary sources */
+.sources { margin: 6px 0 10px; padding-left: 20px; }
+.sources li { margin: 5px 0; color: var(--gray); }
+.sources a { word-break: break-word; }
 
