@@ -561,3 +561,8 @@ footer a:hover { color: var(--cyan); }
 .sources li { margin: 5px 0; color: var(--gray); }
 .sources a { word-break: break-word; }
 
+/* per-episode corrections (issued fixes, on the public record) */
+.corrections { margin: 6px 0 10px; padding-left: 20px; }
+.corrections li { margin: 5px 0; color: var(--gray); }
+.corrections .cdate { color: var(--amber); font-family: var(--mono); margin-right: 8px; }
+
