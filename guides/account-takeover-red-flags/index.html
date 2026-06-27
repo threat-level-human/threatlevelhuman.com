@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Passwords, MFA and Account Takeover: Red Flags and How to Respond | threat level: human</title>
+  <meta name="description" content="How accounts get stolen, and the three habits that stop almost all of it. The warning signs, the do and don&#x27;t list, and what to do if it happens. Free one-page PDF included." />
+  <link rel="canonical" href="https://threatlevelhuman.com/guides/account-takeover-red-flags/" />
+  <meta name="theme-color" content="#0A0E1A" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="threat level: human" />
+  <meta property="og:title" content="Passwords, MFA and Account Takeover: Red Flags and How to Respond | threat level: human" />
+  <meta property="og:description" content="How accounts get stolen, and the three habits that stop almost all of it. The warning signs, the do and don&#x27;t list, and what to do if it happens. Free one-page PDF included." />
+  <meta property="og:url" content="https://threatlevelhuman.com/guides/account-takeover-red-flags/" />
+  <meta property="og:image" content="https://threatlevelhuman.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Passwords, MFA and Account Takeover: Red Flags and How to Respond | threat level: human" />
+  <meta name="twitter:description" content="How accounts get stolen, and the three habits that stop almost all of it. The warning signs, the do and don&#x27;t list, and what to do if it happens. Free one-page PDF included." />
+  <meta name="twitter:image" content="https://threatlevelhuman.com/og-image.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://threatlevelhuman.com/#org",
+      "name": "threat level: human",
+      "url": "https://threatlevelhuman.com/",
+      "logo": "https://threatlevelhuman.com/icon-512.png",
+      "image": "https://threatlevelhuman.com/og-image.png",
+      "description": "Clear, calm cybersecurity briefings on phishing, social engineering, deepfakes, and the human attack vector. Learn how these attacks actually work and how to spot and stop them.",
+      "sameAs": [
+        "https://www.youtube.com/@threatlevelhuman",
+        "https://threatlevelhuman.substack.com"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://threatlevelhuman.com/#website",
+      "name": "threat level: human",
+      "url": "https://threatlevelhuman.com/",
+      "description": "Clear, calm cybersecurity briefings on phishing, social engineering, deepfakes, and the human attack vector. Learn how these attacks actually work and how to spot and stop them.",
+      "publisher": {
+        "@id": "https://threatlevelhuman.com/#org"
+      },
+      "inLanguage": "en"
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/style.css?v=d0b0cd89" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script src="/assets/fx.js?v=d0b0cd89" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brandmark" href="/">threat level: <b>human</b></a>
+      <nav class="nav">
+        <a href="/#episodes">episodes</a>
+        <a href="/blog/index.html">blog</a>
+        <a href="/guides/index.html">guides</a>
+        <a href="/#upcoming">upcoming</a>
+        <a href="https://threatlevelhuman.substack.com" target="_blank" rel="noopener">newsletter</a>
+        <a href="/about/index.html">about</a>
+        <a href="/whoami/">whoami</a>
+        <a href="https://www.youtube.com/@threatlevelhuman" target="_blank" rel="noopener">youtube</a>
+      </nav>
+    </div>
+  </header>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://threatlevelhuman.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Passwords, MFA and Account Takeover",
+      "item": "https://threatlevelhuman.com/guides/account-takeover-red-flags/"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are the red flags of passwords, mfa and account takeover?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Watch for reused passwords, a login reached through a link, an mfa prompt you did not start, use a password manager, plus any pressure to act fast, skip a check, or keep it secret."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the one move that stops it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Turn on multi-factor authentication everywhere, use a password manager so every login is unique, and never approve an MFA prompt you did not personally trigger. Those three habits stop most account takeovers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I do if it already happened?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From a clean device, change the password and sign out all sessions. Re-check MFA, recovery options, and forwarding rules for anything you did not set. Reset every other account that shared that password. Warn contacts if scam messages went out, and report platform takeovers to the provider."
+      }
+    }
+  ]
+}
+  </script>
+  <main class="article pillar">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="/">~</a> / passwords, mfa and account takeover</p>
+      <p class="kicker prompt">man account-takeover-red-flags<span class="cursor"></span></p>
+      <h1>Passwords, MFA and Account Takeover</h1>
+      <p class="lede">How accounts get stolen, and the three habits that stop almost all of it.</p>
+      <p class="callout">99%+ of identity attacks stopped by phishing-resistant MFA (Microsoft, 2025).</p>
+      <section class="pillar-sec">
+        <h2>By the numbers</h2>
+        <ul>
+          <li><b>99%+</b> of identity attacks stopped by phishing-resistant MFA <span class="muted">(Microsoft, 2025)</span></li>
+          <li><b>88%</b> of web-app attacks use stolen credentials <span class="muted">(Verizon DBIR, 2025)</span></li>
+          <li><b>17B+</b> accounts exposed in known data breaches <span class="muted">(Have I Been Pwned, 2026)</span></li>
+        </ul>
+      </section>
+      <section class="pillar-sec">
+        <h2>How accounts get taken over</h2>
+        <ul>
+          <li><b>Reused passwords.</b> One leaked password unlocks every other account that shares it.</li>
+          <li><b>A login reached through a link.</b> Adversary-in-the-middle pages relay your real login and steal the session token.</li>
+          <li><b>An MFA prompt you did not start.</b> Approving a push you did not request hands over your live session.</li>
+        </ul>
+      </section>
+      <section class="pillar-sec">
+        <h2>Harden your accounts</h2>
+        <ul>
+          <li><b>Use a password manager.</b> A long, unique password per site, so one breach cannot spread.</li>
+          <li><b>Prefer phishing-resistant MFA.</b> An app code, a passkey, or a security key beats a code sent by SMS.</li>
+          <li><b>Check your exposure.</b> Look up your email in known-breach data and reset anything that shows up.</li>
+        </ul>
+      </section>
+      <section class="pillar-sec">
+        <h2>Signs an account is already taken</h2>
+        <ul>
+          <li><b>Logins or alerts you do not recognize.</b> Sign-in notices from new devices or locations you never used.</li>
+          <li><b>Settings that changed on their own.</b> New forwarding rules, recovery emails, or phone numbers added to the account.</li>
+          <li><b>Contacts getting messages you did not send.</b> Spam or scam messages going out from your account.</li>
+        </ul>
+      </section>
+      <section class="pillar-sec">
+        <h2>Do and don&#x27;t</h2>
+        <h3>Do</h3>
+        <ul>
+          <li>Use a password manager so every account has a long, unique password.</li>
+          <li>Turn on phishing-resistant MFA: a passkey, a security key, or an app code over SMS.</li>
+          <li>Check your email and passwords against known-breach data and reset matches.</li>
+          <li>Keep recovery email and phone current, and review active sessions now and then.</li>
+        </ul>
+        <h3>Don't</h3>
+        <ul>
+          <li>Do not reuse passwords across sites.</li>
+          <li>Do not enter your password on a page you reached from a link.</li>
+          <li>Do not approve an MFA prompt you did not start, and never share a one-time code.</li>
+          <li>Do not rely on SMS codes alone for your most important accounts.</li>
+        </ul>
+      </section>
+      <section class="pillar-sec">
+        <h2>The one move</h2>
+        <p>Turn on multi-factor authentication everywhere, use a password manager so every login is unique, and never approve an MFA prompt you did not personally trigger. Those three habits stop most account takeovers.</p>
+      </section>
+      <section class="pillar-sec">
+        <h2>If it happens</h2>
+        <ol>
+          <li>From a clean device, change the password and sign out all sessions.</li>
+          <li>Re-check MFA, recovery options, and forwarding rules for anything you did not set.</li>
+          <li>Reset every other account that shared that password.</li>
+          <li>Warn contacts if scam messages went out, and report platform takeovers to the provider.</li>
+        </ol>
+      </section>
+      <section class="pillar-sec">
+        <h2>Go deeper</h2>
+        <p>For the bigger picture, read <a href="/social-engineering/">what is social engineering</a> and <a href="/phishing/">how to spot a phishing email</a>. See these warning signs in real cases in the <a href="/#episodes">weekly briefings</a>.</p>
+      </section>
+      <aside class="newsletter-cta">
+        <h2>// Free field guide</h2>
+        <p>Keep the red flags above in one place. Download the one-page infographic reference, free to
+          save, print, and share.</p>
+        <a class="cta-button" href="/guides/account-takeover-red-flags.pdf" target="_blank" rel="noopener">Download: Passwords, MFA and Account Takeover (PDF) -&gt;</a>
+
+      </aside>
+      <section class="faq">
+        <div class="sec-head">
+          <h2>Frequently asked questions</h2>
+          <span class="tag mono">// guides/account-takeover-red-flags --help</span>
+        </div>
+        <details><summary>What are the red flags of passwords, mfa and account takeover?</summary><p>Watch for reused passwords, a login reached through a link, an mfa prompt you did not start, use a password manager, plus any pressure to act fast, skip a check, or keep it secret.</p></details>
+        <details><summary>What is the one move that stops it?</summary><p>Turn on multi-factor authentication everywhere, use a password manager so every login is unique, and never approve an MFA prompt you did not personally trigger. Those three habits stop most account takeovers.</p></details>
+        <details><summary>What should I do if it already happened?</summary><p>From a clean device, change the password and sign out all sessions. Re-check MFA, recovery options, and forwarding rules for anything you did not set. Reset every other account that shared that password. Warn contacts if scam messages went out, and report platform takeovers to the provider.</p></details>
+        <button class="faq-toggle" type="button" aria-expanded="false">expand all</button>
+      </section>
+      <script>
+        (function () {
+          var btn = document.querySelector(".faq-toggle");
+          if (!btn) return;
+          btn.addEventListener("click", function () {
+            var open = btn.getAttribute("aria-expanded") !== "true";
+            document.querySelectorAll(".faq details").forEach(function (d) { d.open = open; });
+            btn.setAttribute("aria-expanded", open ? "true" : "false");
+            btn.textContent = open ? "collapse all" : "expand all";
+          });
+        })();
+      </script>
+      <div class="cta-row" style="margin-top:34px;">
+        <a class="btn solid" href="https://threatlevelhuman.substack.com/subscribe" target="_blank" rel="noopener">get the weekly briefing</a>
+        <a class="btn" href="/#episodes">watch the briefings</a>
+        <a class="btn ghost" href="/mirror/">see what your visit reveals -&gt;</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap foot-grid">
+      <div>&copy; 2026 threat level: human &middot; the attack vector you can&#x27;t patch.</div>
+      <div>
+        <a href="/#episodes">episodes</a> &middot;
+        <a href="/blog/index.html">blog</a> &middot;
+        <a href="/guides/index.html">guides</a> &middot;
+        <a href="/#upcoming">upcoming</a> &middot;
+        <a href="https://threatlevelhuman.substack.com" target="_blank" rel="noopener">newsletter</a> &middot;
+        <a href="/about/index.html">about</a> &middot;
+        <a href="/whoami/">whoami</a> &middot;
+        <a href="https://www.youtube.com/@threatlevelhuman">youtube</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
