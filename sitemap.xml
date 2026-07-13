@@ -56,6 +56,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://threatlevelhuman.com/blog/ep07-the-trust-boundary-how-attackers-ride-your-vendors-and-tools-into-the-core.html</loc>
+    <lastmod>2026-07-08</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://threatlevelhuman.com/blog/ep06-the-ai-vulnerability-gold-rush-how-machines-are-rewriting-the-security-patch-timeline.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://threatlevelhuman.com/blog/ep05-the-deepfake-dilemma-why-detection-is-losing-to-generation.html</loc>
     <lastmod>2026-06-24</lastmod>
     <priority>0.7</priority>
