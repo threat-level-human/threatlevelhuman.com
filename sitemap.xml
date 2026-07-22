@@ -2,17 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://threatlevelhuman.com/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/social-engineering/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/phishing/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
@@ -42,7 +42,12 @@
   </url>
   <url>
     <loc>https://threatlevelhuman.com/blog/index.html</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://threatlevelhuman.com/blog/ep08-mfa-is-not-a-shield-how-kali365-and-storm-2949-are-breaking-microsoft-365-from-the-inside.html</loc>
+    <lastmod>2026-07-15</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -87,127 +92,127 @@
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/index.html</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/social-engineering-red-flags/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/deepfake-red-flags/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/romance-scam-red-flags/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/investment-scam-red-flags/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/bec-red-flags/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/elder-fraud-red-flags/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/account-takeover-red-flags/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/voice-clone-red-flags/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/smishing-red-flags/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/ransomware-red-flags/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/job-scam-red-flags/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/social-engineering-red-flags.pdf</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/deepfake-red-flags.pdf</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/romance-scam-red-flags.pdf</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/investment-scam-red-flags.pdf</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/bec-red-flags.pdf</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/elder-fraud-red-flags.pdf</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/account-takeover-red-flags.pdf</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/voice-clone-red-flags.pdf</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/smishing-red-flags.pdf</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/ransomware-red-flags.pdf</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/guides/job-scam-red-flags.pdf</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/whoami/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://threatlevelhuman.com/about/index.html</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>
